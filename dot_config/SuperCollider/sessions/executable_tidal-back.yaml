@@ -1,0 +1,36 @@
+documents: !QVariantList
+  - /home/skmecs/SuperCollider/VSTPlugin_Stuff/MODO.scd
+  - /home/skmecs/SuperCollider/swingfy.scd
+  - /home/skmecs/SuperCollider/VSTPlugin_Stuff/manage.scd
+  - /home/skmecs/SuperCollider/liveCodeThis/_0_StartUp.scd
+  - /media/skmecs/TOSHIBA EXT1/TRABALHO/CAMPO/interface/superDirt_startup.scd
+  - /media/skmecs/TOSHIBA EXT1/TRABALHO/CAMPO/Synths/vstinstrument.scd
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 2
+        position: 776
+      - !QVariantMap
+        documentIndex: 4
+        position: 2776
+      - !QVariantMap
+        documentIndex: 5
+        position: 0
+      - !QVariantMap
+        documentIndex: 3
+        position: 1720
+      - !QVariantMap
+        documentIndex: 1
+        position: 0
+      - !QVariantMap
+        documentIndex: 0
+        position: 0
+  state: AAAA/wAAAAEAAAABAAAAZAH/////AQAAAAEA
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: ""
+    post-dock: ""
+  geometry: AdnQywADAAAAAAAAAAAAGwAAB38AAAQ3AAAAAAAAADMAAAd/AAAENwAAAAACAAAAB4AAAAAAAAAAMwAAB38AAAQ3
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAAD+AAAD1fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawAAAAAWAAAD1QAAAF8A////AAAAAQAAAnUAAAPT/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAFgAAAegAAABNAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAf8AAAHqAAAATQD///8AAAUKAAAD0wAAAAEAAAACAAAAAQAAAAL8AAAAAA==

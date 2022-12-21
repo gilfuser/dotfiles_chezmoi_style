@@ -1,0 +1,40 @@
+documents: !QVariantList
+  - /home/skmecs/SuperCollider/SuperCodingLiveCollider/dia_5_patterns/5a_patterns_variacoes-e-jitlib.scd
+  - /home/skmecs/SuperCollider/liveCodeThis/AlgoraveBR/tocatudo/flow.scd
+  - /home/skmecs/SuperCollider/demonstrations/Chaotic Patterns.scd
+  - /home/skmecs/SuperCollider/RhythmanalysynthesiSkmecs/Code/scbook_code/Ch 7 JIT/Ch7code.scd
+  - /home/skmecs/SuperCollider/libs/_colecoes.scd
+  - /home/skmecs/SuperCollider/libs/_SynthLib.scd
+  - /home/skmecs/SuperCollider/liveCodeThis/AlgoraveBR/tocatudo/drums.scd
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 4
+        position: 6696
+      - !QVariantMap
+        documentIndex: 6
+        position: 424
+      - !QVariantMap
+        documentIndex: 2
+        position: 0
+      - !QVariantMap
+        documentIndex: 3
+        position: 8527
+      - !QVariantMap
+        documentIndex: 5
+        position: 18366
+      - !QVariantMap
+        documentIndex: 1
+        position: 0
+      - !QVariantMap
+        documentIndex: 0
+        position: 26214
+  state: AAAA/wAAAAEAAAABAAAAZAH/////AQAAAAEA
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: ""
+    post-dock: ""
+  geometry: AdnQywADAAAAAAAAAAAAGQAAB38AAAQ3AAAAAAAAADEAAAd/AAAENwAAAAACAAAAB4AAAAAAAAAAMQAAB38AAAQ3
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAAD+AAAD1fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawAAAAAWAAAD1QAAAF8A////AAAAAQAAAwIAAAPV/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAFgAAArsAAABNAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAtIAAAEZAAAATQD///8AAAR9AAAD1QAAAAEAAAACAAAAAQAAAAL8AAAAAA==

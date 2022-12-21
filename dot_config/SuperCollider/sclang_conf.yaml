@@ -1,0 +1,28 @@
+includePaths:
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/Vowel
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/Dirt-Samples
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/Bjorklund
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/CuePlayer
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/JITLibExtensions
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/adclib
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/Influx
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/Utopia
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/HyperDisCo
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/KtlLoop
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/KeyPlayer
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/Modality-toolkit
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/ModalityWorkshop
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/ListeningClocks
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/Republic
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/StartupFile
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/Require
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/Esp
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/SuperDirt
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/TroopQuark
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/plugins.quark
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/plugins
+    -   /home/skmecs/.local/share/SuperCollider/downloaded-quarks/Maths
+excludePaths:
+    []
+postInlineWarnings: false
+excludeDefaultPaths: false

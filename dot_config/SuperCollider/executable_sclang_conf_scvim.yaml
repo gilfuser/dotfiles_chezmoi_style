@@ -1,0 +1,16 @@
+includePaths:
+    -   /home/gilfuser/.local/share/SuperCollider/downloaded-quarks/Bjorklund
+    -   /home/gilfuser/.local/share/SuperCollider/downloaded-quarks/Feedback
+    -   /home/gilfuser/.local/share/SuperCollider/downloaded-quarks/JITLibExtensions
+    -   /home/gilfuser/.local/share/SuperCollider/downloaded-quarks/adclib
+    -   /home/gilfuser/.local/share/SuperCollider/downloaded-quarks/Influx
+    -   /home/gilfuser/.local/share/SuperCollider/downloaded-quarks/KeyPlayer
+    -   /home/gilfuser/.local/share/SuperCollider/downloaded-quarks/KtlLoop
+    -   /home/gilfuser/.local/share/SuperCollider/downloaded-quarks/Modality-toolkit
+    -   /home/gilfuser/.local/share/SuperCollider/downloaded-quarks/Utopia
+    -   /home/gilfuser/.local/share/SuperCollider/downloaded-quarks/Vowel
+    -   /home/gilfuser/.local/share/SuperCollider/downloaded-quarks/SuperDirt
+    -   /home/gilfuser/.dotfiles/plugged/scvim/sc
+excludePaths:
+    -   /home/gilfuser/.local/share/SuperCollider/Extensions/scvim
+postInlineWarnings: false

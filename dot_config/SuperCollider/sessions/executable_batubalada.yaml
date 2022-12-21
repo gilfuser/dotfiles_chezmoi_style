@@ -1,0 +1,45 @@
+documents: !QVariantList
+  - /home/skmecs/Trabalho/BATU/batubalada.scd
+  - /home/skmecs/Trabalho/BATU/tirititiu.scd
+  - /home/skmecs/SuperCollider/libs/_colecoes.scd
+  - /home/skmecs/SuperCollider/libs/_SynthLib.scd
+  - /home/skmecs/SuperCollider/swingfy.scd
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 3
+        position: 419
+      - !QVariantMap
+        documentIndex: 2
+        position: 460
+      - !QVariantMap
+        documentIndex: 1
+        position: 7864
+      - !QVariantMap
+        documentIndex: 4
+        position: 2924
+      - !QVariantMap
+        documentIndex: 0
+        position: 2150
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 1
+        position: 5551
+      - !QVariantMap
+        documentIndex: 0
+        position: 435
+      - !QVariantMap
+        documentIndex: 3
+        position: 5217
+      - !QVariantMap
+        documentIndex: 2
+        position: 4148
+  state: AAAA/wAAAAEAAAACAAADwAAAA8AB/////wEAAAABAA==
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: ""
+    post-dock: ""
+  geometry: AdnQywADAAAAAAAAAAAAGwAAB38AAAQ3AAAAAAAAADEAAAd/AAAENwAAAAACAAAAB4AAAAAAAAAAMwAAB38AAAQ3
+  state: AAAA/wAAAAD9AAAAAwAAAAAAAAD+AAAD1fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawAAAAAWAAAD1QAAAF8A////AAAAAQAAASMAAAPT/AIAAAAB+wAAABIAcABvAHMAdAAtAGQAbwBjAGsDAAAFYwAAAoMAAAK1AAABQgAAAAIAAAeAAAAC/PwBAAAAAfsAAAASAGgAZQBsAHAALQBkAG8AYwBrAwAABrIAAADaAAACsgAAAvwAAAeAAAAD0wAAAAEAAAACAAAAAQAAAAL8AAAAAA==

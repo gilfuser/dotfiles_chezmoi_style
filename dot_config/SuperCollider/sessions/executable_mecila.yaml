@@ -1,0 +1,26 @@
+documents: !QVariantList
+  - ""
+  - /home/skmecs/SuperCollider/SuperCodingLiveCollider/dia_5_patterns/5a_patterns_variacoes-e-jitlib.scd
+  - /home/skmecs/Trabalho/Mecila/Abertura/global/0_loadGlobalUtils.scd
+  - /home/skmecs/Trabalho/Mecila/Abertura/global/_setup.scd
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 2
+        position: 337
+      - !QVariantMap
+        documentIndex: 3
+        position: 845
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 1
+        position: 3671
+  state: AAAA/wAAAAEAAAACAAACYgAAAmIB/////wEAAAABAA==
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: ""
+    post-dock: ""
+  geometry: AdnQywADAAAAAAAAAAAAGQAAB38AAAQ3AAAAAAAAADEAAAd/AAAENwAAAAACAAAAB4AAAAAAAAAAMQAAB38AAAQ3
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAAD+AAAD1fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawAAAAAWAAAD1QAAAF8A////AAAAAQAAASMAAAPV/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAFgAAAS8AAABNAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAUYAAAKlAAAATQD///8AAAZcAAAD1QAAAAEAAAACAAAAAQAAAAL8AAAAAA==

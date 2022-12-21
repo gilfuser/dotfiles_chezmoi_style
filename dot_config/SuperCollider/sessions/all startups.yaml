@@ -1,0 +1,64 @@
+documents: !QVariantList
+  - /media/skmecs/TOSHIBA EXT/SuperCollider/liveCodeThis/CodeCon/startup_remainings.scd
+  - /media/skmecs/TOSHIBA EXT/SuperCollider/liveCodeThis/_0_StartUp.scd
+  - /media/skmecs/TOSHIBA EXT/SuperCollider/liveCodeThis/AlgoraveBR/_0_StartUp.scd
+  - /media/skmecs/TOSHIBA EXT/SuperCollider/liveCodeThis/interface/superDirt_startup.scd
+  - /media/skmecs/TOSHIBA EXT/SuperCollider/home.local-share/SuperCollider/downloaded-quarks/SuperDirt/superdirt_startup.scd
+  - /media/skmecs/TOSHIBA EXT/SuperCollider/Tutorials/TheScBook/code/Ch 20 dewdrop and chucklib/dewdrop_lib/ddwChucklib/Prototypes/startup20-basicChordBits.scd
+  - /media/skmecs/TOSHIBA EXT/SuperCollider/Tutorials/TheScBook/code/Ch 20 dewdrop and chucklib/dewdrop_lib/ddwChucklib/Prototypes/startup14-perc.scd
+  - /media/skmecs/TOSHIBA EXT/SuperCollider/Tutorials/TheScBook/code/Ch 20 dewdrop and chucklib/dewdrop_lib/ddwChucklib/Prototypes/startup11-chordal.scd
+  - /media/skmecs/TOSHIBA EXT/SuperCollider/Tutorials/TheScBook/code/Ch 20 dewdrop and chucklib/dewdrop_lib/ddwChucklib/Prototypes/startup10-melodic.scd
+  - /media/skmecs/TOSHIBA EXT/SuperCollider/Tutorials/TheScBook/code/Ch 20 dewdrop and chucklib/dewdrop_lib/ddwChucklib/Prototypes/startup04-rhythmProfiles.scd
+  - /media/skmecs/TOSHIBA EXT/SuperCollider/Tutorials/TheScBook/code/Ch 20 dewdrop and chucklib/dewdrop_lib/ddwChucklib/Prototypes/startup03-chordalStorage.scd
+  - /media/skmecs/TOSHIBA EXT/SuperCollider/Tutorials/TheScBook/code/Ch 20 dewdrop and chucklib/dewdrop_lib/ddwChucklib/Prototypes/startup02-melodicStorage.scd
+  - /media/skmecs/TOSHIBA EXT/SuperCollider/Tutorials/TheScBook/code/Ch 20 dewdrop and chucklib/dewdrop_lib/ddwChucklib/Prototypes/startup01-events.scd
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 0
+        position: 0
+      - !QVariantMap
+        documentIndex: 2
+        position: 0
+      - !QVariantMap
+        documentIndex: 3
+        position: 0
+      - !QVariantMap
+        documentIndex: 4
+        position: 0
+      - !QVariantMap
+        documentIndex: 5
+        position: 0
+      - !QVariantMap
+        documentIndex: 6
+        position: 0
+      - !QVariantMap
+        documentIndex: 7
+        position: 0
+      - !QVariantMap
+        documentIndex: 8
+        position: 0
+      - !QVariantMap
+        documentIndex: 9
+        position: 0
+      - !QVariantMap
+        documentIndex: 10
+        position: 0
+      - !QVariantMap
+        documentIndex: 11
+        position: 0
+      - !QVariantMap
+        documentIndex: 12
+        position: 0
+      - !QVariantMap
+        documentIndex: 1
+        position: 148
+  state: AAAA/wAAAAEAAAABAAACOwH/////AQAAAAEA
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: ""
+    post-dock: ""
+  geometry: AdnQywADAAAAAAAAAAAAHgAAB38AAAQ3AAAAAAAAADsAAAd/AAAENwAAAAAAAAAAB4AAAAAAAAAAOwAAB38AAAQ3
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAAD+AAAD1fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawAAAAAWAAAD1QAAAGAA////AAAAAQAAAusAAAPJ/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAFwAAAuYAAABOAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAv4AAADiAAAATgD///8AAASUAAADyQAAAAEAAAACAAAAAQAAAAL8AAAAAA==

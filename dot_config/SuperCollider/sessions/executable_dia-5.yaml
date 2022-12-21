@@ -1,0 +1,28 @@
+documents: !QVariantList
+  - /home/skmecs/SuperCollider/SuperCodingLiveCollider/dia_5_patterns/5a_patterns.scd
+  - /home/skmecs/SuperCollider/melody.scd
+  - /home/skmecs/SuperCollider/SuperCodingLiveCollider/libs/_SynthLib.scd
+  - /home/skmecs/SuperCollider/SuperCodingLiveCollider/libs/allesAnAlle.scd
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 3
+        position: 431
+      - !QVariantMap
+        documentIndex: 2
+        position: 597
+      - !QVariantMap
+        documentIndex: 1
+        position: 2621
+      - !QVariantMap
+        documentIndex: 0
+        position: 24443
+  state: AAAA/wAAAAEAAAABAAAAZAH/////AQAAAAEA
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: ""
+    post-dock: ""
+  geometry: AdnQywADAAAAAAAAAAAAGQAAB38AAAQ3AAAAAAAAADEAAAd/AAAENwAAAAACAAAAB4AAAAAAAAAAMQAAB38AAAQ3
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAAD+AAAD1fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawAAAAAWAAAD1QAAAF8A////AAAAAQAAA8EAAAPV/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAFgAAAy4AAABNAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAA0UAAACmAAAATQD///8AAAO+AAAD1QAAAAEAAAACAAAAAQAAAAL8AAAAAA==

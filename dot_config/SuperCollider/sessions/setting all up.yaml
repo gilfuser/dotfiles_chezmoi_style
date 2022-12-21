@@ -1,0 +1,32 @@
+documents: !QVariantList
+  - /home/skmecs/SuperCollider/interface/printEverything.scd
+  - /home/skmecs/SuperCollider/interface/modality-mpk.scd
+  - /home/skmecs/SuperCollider/interface/Modality_MPKmini/temp.scd
+  - /home/skmecs/.local/share/SuperCollider/MKtlDescriptions/my-complete-mpkmini2.desc.scd
+  - /home/skmecs/SuperCollider/_0_main-controls.scd
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 0
+        position: 543
+      - !QVariantMap
+        documentIndex: 4
+        position: 138
+      - !QVariantMap
+        documentIndex: 3
+        position: 0
+      - !QVariantMap
+        documentIndex: 2
+        position: 0
+      - !QVariantMap
+        documentIndex: 1
+        position: 6084
+  state: AAAA/wAAAAEAAAABAAADKQH/////AQAAAAEA
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: ""
+    post-dock: ""
+  geometry: AdnQywADAAAAAAAAAAAAHgAAB38AAAQ3AAAAAAAAADsAAAd/AAAENwAAAAACAAAAB4AAAAAAAAAAOwAAB38AAAQ3
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAAD+AAADtfwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawAAAAAXAAADtQAAAGQA////AAAAAQAAAsEAAAPF/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAFwAAAfQAAABSAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAgwAAAHQAAAAUgD///8AAAS+AAADxQAAAAEAAAACAAAAAQAAAAL8AAAAAA==
