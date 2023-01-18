@@ -36,8 +36,13 @@ ls.setup({
 	ext_opts = {
 		[types.choiceNode] = {
 			active = {
-				virt_text = { { "choiceNode", "Comment" } },
-			},
+				virt_text = {{"●", "GruvboxOrange"}}
+			}
+		},
+		[types.insertNode] = {
+			active = {
+				virt_text = {{"●", "GruvboxBlue"}}
+			}
 		},
 	},
 	-- treesitter-hl has 100, use something higher (default is 200).
@@ -179,257 +184,7 @@ end
 --
 -- opts can also specify a key. By passing an unique key to each add_snippets, it's possible to reload snippets by
 -- re-`:luafile`ing the file in which they are defined (eg. this one).
-local indigenas = {
-	"aikanã",
-	"aikewara",
-	"akuntsu",
-	"amanayé",
-	"amondawa",
-	"anacé",
-	"anambé",
-	"aparai",
-	"apiaká",
-	"apinayé",
-	"apurinã",
-	"aranã",
-	"arapaso",
-	"arapium",
-	"arara",
-	"araweté",
-	"arikapú",
-	"aruá",
-	"ashaninka",
-	"asurini",
-	"atikum",
-	"avá-canoeiro",
-	"awa_guajá",
-	"aweti",
-	"bakairi",
-	"banawá",
-	"baniwa",
-	"bará",
-	"barasana",
-	"baré",
-	"borari",
-	"bororo",
-	"canela_apanyekrá",
-	"canela_ramkokamekrá",
-	"cara_preta",
-	"charrua",
-	"chiquitano",
-	"cinta_larga",
-	"dâw",
-	"deni",
-	"desana",
-	"djeoromitxí",
-	"enawenê-nawê",
-	"fulkaxó",
-	"fulni-ô",
-	"galibi_do_oiapoque",
-	"galibi-marworno",
-	"gamela",
-	"gavião_akrãtikatêjê",
-	"gavião_kykatejê",
-	"gavião_parkatêjê",
-	"gavião_pykopjê",
-	"guajajara",
-	"guarani",
-	"guarasugwe",
-	"guató",
-	"hixkaryana",
-	"huni_kuin",
-	"hupda",
-	"ikolen",
-	"ikpeng",
-	"ingarikó",
-	"iny_karajá",
-	"iranxe_manoki",
-	"jamamadi",
-	"jaraqui",
-	"jarawara",
-	"javaé",
-	"jenipapo-kanindé",
-	"jiahui",
-	"jiripancó",
-	"juma",
-	"ka_apor",
-	"kadiwéu",
-	"kahiana",
-	"kaimbé",
-	"kaingang",
-	"kaixana",
-	"kalabaça",
-	"kalankó",
-	"kalapalo",
-	"kamaiurá",
-	"kamba",
-	"kambeba",
-	"kambiwá",
-	"kanamari",
-	"kanindé",
-	"kanoê",
-	"kantaruré",
-	"kapinawa",
-	"karajá_do_norte",
-	"karapanã",
-	"karapotó",
-	"karipuna_de_rondônia",
-	"karipuna_do_amapá",
-	"kariri",
-	"kariri-xokó",
-	"karitiana",
-	"karo",
-	"karuazu",
-	"kassupá",
-	"katuenayana",
-	"katukina_do_rio_biá",
-	"katukina_pano",
-	"katxuyana",
-	"kawaiwete",
-	"kaxarari",
-	"kaxixó",
-	"kinikinau",
-	"kiriri",
-	"kisêdjê",
-	"koiupanká",
-	"kokama",
-	"koripako",
-	"korubo",
-	"kotiria",
-	"krahô",
-	"krahô-kanela",
-	"krenak",
-	"krenyê",
-	"krikatí",
-	"kubeo",
-	"kuikuro",
-	"kujubim",
-	"kulina",
-	"kulina_pano",
-	"kuntanawa",
-	"kuruaya",
-	"kwazá",
-	"macuxi",
-	"makuna",
-	"makurap",
-	"manchineri",
-	"maraguá",
-	"marubo",
-	"matipu",
-	"matis",
-	"matsés",
-	"maxakali",
-	"mebêngôkre_kayapó",
-	"mehinako",
-	"menky_manoki",
-	"migueleno",
-	"miranha",
-	"mirity-tapuya",
-	"mukurin",
-	"munduruku",
-	"mura",
-	"nadöb",
-	"nahukuá",
-	"nambikwara",
-	"naruvotu",
-	"nawa",
-	"nukini",
-	"ofaié",
-	"oro_win",
-	"palikur",
-	"panará",
-	"pankaiuká",
-	"pankará",
-	"pankararé",
-	"pankararu",
-	"pankaru",
-	"parakanã",
-	"paresí",
-	"parintintin",
-	"patamona",
-	"pataxó",
-	"pataxó_hã-hã-hãe",
-	"paumari",
-	"payayá",
-	"pipipã",
-	"pirahã",
-	"pira-tapuya",
-	"pitaguary",
-	"potiguara",
-	"puri",
-	"puruborá",
-	"puyanawa",
-	"rikbaktsa",
-	"sakurabiat",
-	"sapará",
-	"sateré_mawé",
-	"shanenawa",
-	"siriano",
-	"surui_paiter",
-	"suruwaha",
-	"tabajara",
-	"tapajó",
-	"tapayuna",
-	"tapeba",
-	"tapirapé",
-	"tapuia",
-	"tariana",
-	"taurepang",
-	"tembé",
-	"tenharim",
-	"terena",
-	"ticuna",
-	"tingui_botó",
-	"tiriyó",
-	"torá",
-	"tremembé",
-	"truká",
-	"trumai",
-	"tsohom-dyapa",
-	"tukano",
-	"tumbalalá",
-	"tunayana",
-	"tupaiú",
-	"tupari",
-	"tupinambá",
-	"tupiniquim",
-	"turiwara",
-	"tuxá",
-	"tuxi",
-	"tuyuka",
-	"umutina",
-	"uru-eu-wau-wau",
-	"waimiri_atroari",
-	"waiwai",
-	"wajãpi",
-	"wajuru",
-	"wapichana",
-	"warekena",
-	"wari",
-	"wassu",
-	"wauja",
-	"wayana",
-	"witoto",
-	"xakriabá",
-	"xavante",
-	"xerente",
-	"xetá",
-	"xikrin",
-	"xinane",
-	"xipaya",
-	"xokleng",
-	"xokó",
-	"xukuru",
-	"xukuru-kariri",
-	"yaminawá",
-	"yanomami",
-	"yawalapiti",
-	"yawanawá",
-	"ye_kwana",
-	"yudja",
-	"yuhupde",
-	"zo_é",
-	"zoró",
+local indigenas = { "aikanã", "aikewara", "akuntsu", "amanayé", "amondawa", "anacé", "anambé", "aparai", "apiaká", "apinayé", "apurinã", "aranã", "arapaso", "arapium", "arara", "araweté", "arikapú", "aruá", "ashaninka", "asurini", "atikum", "avá_canoeiro", "awa_guajá", "aweti", "bakairi", "banawá", "baniwa", "bará", "barasana", "baré", "borari", "bororo", "canela_apanyekrá", "canela_ramkokamekrá", "cara_preta", "charrua", "chiquitano", "cinta_larga", "dâw", "deni", "desana", "djeoromitxí", "enawenê_nawê", "fulkaxó", "fulni_ô", "galibi_do_oiapoque", "galibi_marworno", "gamela", "gavião_akrãtikatêjê", "gavião_kykatejê", "gavião_parkatêjê", "gavião_pykopjê", "guajajara", "guarani", "guarasugwe", "guató", "hixkaryana", "huni_kuin", "hupda", "ikolen", "ikpeng", "ingarikó", "iny_karajá", "iranxe_manoki", "jamamadi", "jaraqui", "jarawara", "javaé", "jenipapo_kanindé", "jiahui", "jiripancó", "juma", "ka_apor", "kadiwéu", "kahiana", "kaimbé", "kaingang", "kaixana", "kalabaça", "kalankó", "kalapalo", "kamaiurá", "kamba", "kambeba", "kambiwá", "kanamari", "kanindé", "kanoê", "kantaruré", "kapinawa", "karajá_do_norte", "karapanã", "karapotó", "karipuna_de_rondônia", "karipuna_do_amapá", "kariri", "kariri_xokó", "karitiana", "karo", "karuazu", "kassupá", "katuenayana", "katukina_do_rio_biá", "katukina_pano", "katxuyana", "kawaiwete", "kaxarari", "kaxixó", "kinikinau", "kiriri", "kisêdjê", "koiupanká", "kokama", "koripako", "korubo", "kotiria", "krahô", "krahô_kanela", "krenak", "krenyê", "krikatí", "kubeo", "kuikuro", "kujubim", "kulina", "kulina_pano", "kuntanawa", "kuruaya", "kwazá", "macuxi", "makuna", "makurap", "manchineri", "maraguá", "marubo", "matipu", "matis", "matsés", "maxakali", "mebêngôkre_kayapó", "mehinako", "menky_manoki", "migueleno", "miranha", "mirity_tapuya", "mukurin", "munduruku", "mura", "nadöb", "nahukuá", "nambikwara", "naruvotu", "nawa", "nukini", "ofaié", "oro_win", "palikur", "panará", "pankaiuká", "pankará", "pankararé", "pankararu", "pankaru", "parakanã", "paresí", "parintintin", "patamona", "pataxó", "pataxó_hã_hã_hãe", "paumari", "payayá", "pipipã", "pirahã", "pira_tapuya", "pitaguary", "potiguara", "puri", "puruborá", "puyanawa", "rikbaktsa", "sakurabiat", "sapará", "sateré_mawé", "shanenawa", "siriano", "surui_paiter", "suruwaha", "tabajara", "tapajó", "tapayuna", "tapeba", "tapirapé", "tapuia", "tariana", "taurepang", "tembé", "tenharim", "terena", "ticuna", "tingui_botó", "tiriyó", "torá", "tremembé", "truká", "trumai", "tsohom_dyapa", "tukano", "tumbalalá", "tunayana", "tupaiú", "tupari", "tupinambá", "tupiniquim", "turiwara", "tuxá", "tuxi", "tuyuka", "umutina", "uru_eu_wau_wau", "waimiri_atroari", "waiwai", "wajãpi", "wajuru", "wapichana", "warekena", "wari", "wassu", "wauja", "wayana", "witoto", "xakriabá", "xavante", "xerente", "xetá", "xikrin", "xinane", "xipaya", "xokleng", "xokó", "xukuru", "xukuru_kariri", "yaminawá", "yanomami", "yawalapiti", "yawanawá", "ye_kwana", "yudja", "yuhupde", "zo_é", "zoró",
 }
 
 local rand = function(indi)
@@ -496,7 +251,7 @@ ls.add_snippets("all", {
 		i(1),
 		t("("),
 		-- Placeholder with initial text.
-		i(2, "int foo"),
+	i(2, "int foo"),
 		-- Linebreak
 		t({ ") {", "\t" }),
 		-- Last Placeholder, exit Point of the snippet.
@@ -530,7 +285,7 @@ ls.add_snippets("all", {
 				t(" {"),
 			}),
 		}),
-		t({ "", "\t" }),
+	t({ "", "\t" }),
 		i(0),
 		t({ "", "}" }),
 	}),
@@ -555,7 +310,7 @@ ls.add_snippets("all", {
 		foo({1}, {3}) {{
 			return {2} * {4}
 		}}
-		]],
+			]],
 			{
 				i(1, "x"),
 				rep(1),
@@ -601,11 +356,11 @@ ls.add_snippets("all", {
 	-- Using the condition, it's possible to allow expansion only in specific cases.
 	s("cond", {
 		t("will only expand in c-style comments"),
-	}, {
-		condition = function(line_to_cursor, matched_trigger, captures)
-			-- optional whitespace followed by //
-			return line_to_cursor:match("%s*//")
-		end,
+		}, {
+			condition = function(line_to_cursor, matched_trigger, captures)
+				-- optional whitespace followed by //
+				return line_to_cursor:match("%s*//")
+			end,
 	}),
 	-- there's some built-in conditions in "luasnip.extras.conditions.expand" and "luasnip.extras.conditions.show".
 	--[[ s("cond2", {
@@ -645,10 +400,10 @@ ls.add_snippets("all", {
 	),
 	s({ trig = "c(%d+)", regTrig = true }, {
 		t("will only expand for even numbers"),
-	}, {
-		condition = function(line_to_cursor, matched_trigger, captures)
-			return tonumber(captures[1]) % 2 == 0
-		end,
+		}, {
+			condition = function(line_to_cursor, matched_trigger, captures)
+				return tonumber(captures[1]) % 2 == 0
+			end,
 	}),
 	-- Use a function to execute any shell command and print its text.
 	s("bash", f(bash, {}, { user_args = { "ls" } })),
@@ -751,8 +506,8 @@ ls.add_snippets("all", {
 	}),
 	s("ndef", { t("Ndef( \\"), i(1), t(", { "), i(2), t(" })") }),
 }, {
-	key = "all",
-})
+		key = "all",
+	})
 
 -- set type to "autosnippets" for adding autotriggered snippets.
 ls.add_snippets("all", {
@@ -773,38 +528,27 @@ ls.add_snippets("all", {
 		i(5, "relaxT"),
 		t(" )"),
 	}),
-    s( "pseq", { t( "Pseq( "), i(1), i(2,", inf)") }),
-    s( "pxrand", { t( "Pxrand( "), i(1), i(2,", inf)") }),
-    s( "pwhite", { t( "Pwhite( "), i(1), i(2,", inf)") }),
-    s( "pbrown", { t( "Pbrown( "), i(1), i(2,", inf)") }),
-    s( "pclipnoise", { t("PClipNoise( "), i(1,"mul"), t(", "), i(2," add"), i(3, ", inf)") }),
-    s( "pexprand", { t("PClipNoise( "), i(1,"0.01"), t(", "), i(2," 1.0"), i(3, ", inf)") }),
-    s( "plfpulse", { t("PLFPulse( "), i(1,"55"), t(", "), i(2,"iphase=0"), i(3,"0.5"), t(", "), t("length: inf") } ),
-    s( "pexprand", { t("PExpRand( "), i(1,"0.01"), t(", "), i(2," 1.0"), i(3, ", inf)") }),
-    -- s( "pseq", { t( "Pseq( "), i(1), t(", inf)") }),
-    s("ndif", { t("Ndef( \\"), f(chooseName), t(", { "), i(1), t(" }).play;" ) }),
+	s( "pseq", { t( "Pseq( "), i(1), i(2,", inf)") }),
+	s( "pxrand", { t( "Pxrand( "), i(1), i(2,", inf)") }),
+	s( "pwhite", { t( "Pwhite( "), i(1), i(2,", inf)") }),
+	s( "pbrown", { t( "Pbrown( "), i(1), i(2,", inf)") }),
+	s( "pclipnoise", { t("PClipNoise( "), i(1,"mul"), t(", "), i(2," add"), i(3, ", inf)") }),
+	s( "pexprand", { t("PClipNoise( "), i(1,"0.01"), t(", "), i(2," 1.0"), i(3, ", inf)") }),
+	s( "plfpulse", { t("PLFPulse( "), i(1,"55"), t(", "), i(2,"iphase=0"), i(3,"0.5"), t(", "), t("length: inf") } ),
+	s( "pexprand", { t("PExpRand( "), i(1,"0.01"), t(", "), i(2," 1.0"), i(3, ", inf)") }),
+	-- s( "pseq", { t( "Pseq( "), i(1), t(", inf)") }),
+	s("ndif", { t("Ndef( \\"), f(chooseName), t(", { "), i(1), t(" }).play;" ) }),
 	s("npi", { t("~"), f(chooseName), t(" = { "), i(1), t(" }; ~"), i(2), t(".play;") }),
 	s("npx", { t("~"), i(1), t(" = { "), i(2), t(" };"), i(0) }),
 	s("nfil", { t("~"), i(1), t("["), i(2, "2"), t("] = \\filter -> "), i(3) }),
 	s("nfii", { t("~"), i(1), t("["), i(2, "2"), t("] = \\filterIn -> "), i(3) }),
-	s("nset", {
-		t("~"),
-		i(1),
-		t("["),
-		i(2, "2"),
-		t("] = \\set -> { Pbind ( "),
-		i(3),
-		t("\\dur, "),
-		i(4, "1"),
-		t(", "),
-		i(0),
-		t(" ) }"),
+	s("nset", { t("~"), i(1), t("["), i(2, "2"), t("] = \\set -> { Pbind ( "), i(3), t("\\dur, "), i(4, "1"), t(", "), i(0), t(" ) }"),
 	}),
 	s("npmix", { t("~"), i(1), t("["), i(2, "2"), t("] = \\mix -> { "), i(0), t(" }") }),
 }, {
-	type = "autosnippets",
-	key = "all_auto",
-})
+		type = "autosnippets",
+		key = "all_auto",
+	})
 
 
 ls.add_snippets("java", {
@@ -842,8 +586,8 @@ ls.add_snippets("java", {
 		t({ "", "}" }),
 	}),
 }, {
-	key = "java",
-})
+		key = "java",
+	})
 
 ls.add_snippets("tex", {
 	-- rec_ls is self-referencing. That makes this snippet 'infinite' eg. have as many
@@ -851,12 +595,12 @@ ls.add_snippets("tex", {
 	s("ls", {
 		t({ "\\begin{itemize}", "\t\\item " }),
 		i(1),
-		d(2, rec_ls, {}),
+	d(2, rec_ls, {}),
 		t({ "", "\\end{itemize}" }),
 	}),
 }, {
-	key = "tex",
-})
+		key = "tex",
+	})
 
 -- in a lua file: search lua-, then c-, then all-snippets.
 ls.filetype_extend("lua", { "c" })
@@ -899,3 +643,35 @@ require("luasnip.loaders.from_snipmate").lazy_load() -- Lazy loading
 -- see DOC.md/LUA SNIPPETS LOADER for some details.
 require("luasnip.loaders.from_lua").load({ include = { "c" } })
 require("luasnip.loaders.from_lua").lazy_load({ include = { "all", "cpp" } })
+
+-- <c-l> is my expansion key
+-- expand the current item or jump to the next item within the snippet.
+vim.keymap.set({ "i", "s" }, "<c-l>", function()
+  if ls.expand_or_jumpable() then
+    ls.expand_or_jump()
+  end
+end, { silent = true })
+
+-- <c-h> is my jump backwards key.
+vim.keymap.set({ "i", "s" }, "<c-h>", function()
+  if ls.jumpable(-1) then
+    ls.jump(-1)
+  end
+end, { silent = true })
+
+-- <c-j> is selecting within a list of options.
+vim.keymap.set("i", "<c-j>", function()
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
+end)
+vim.keymap.set("i", "<c-k>", function()
+  if ls.choice_active() then
+    ls.change_choice(-1)
+  end
+end)
+
+vim.keymap.set("i", "<c-u>", require "luasnip.extras.select_choice")
+
+-- shorcut to source my luasnips file again, which will reload my snippets
+vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>")

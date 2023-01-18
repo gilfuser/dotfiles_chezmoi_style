@@ -43,6 +43,11 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter',
   }
 
+  use {
+    'nvim-treesitter/nvim-treesitter-context',
+    after = 'nvim-treesitter'
+  }
+
   -- Git related plugins
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
@@ -55,7 +60,11 @@ require('packer').startup(function(use)
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
   -- Fuzzy Finder (files, lsp, etc)
-  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
+  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim',  "nvim-telescope/telescope-live-grep-args.nvim",
+    config = function()
+      require("telescope").load_extension("live_grep_args")
+    end
+  } }
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
@@ -389,9 +398,7 @@ require('fidget').setup()
 -- nvim-cmp setup
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
-
-local lspkind = require('lspkind')
-
+-- local lspkind = require('lspkind')
 
 cmp.setup {
   -- entries = {name = 'custom', selection_order = 'near_cursor' },
@@ -400,15 +407,28 @@ cmp.setup {
       luasnip.lsp_expand(args.body)
     end,
   },
+  enabled = function()
+      -- disable completion in comments
+      local context = require 'cmp.config.context'
+      -- keep command mode completion enabled when cursor is in a comment
+      if vim.api.nvim_get_mode().mode == 'c' then
+        return true
+      else
+        return not context.in_treesitter_capture("comment")
+          and not context.in_syntax_group("Comment")
+      end
+    end,
   mapping = cmp.mapping.preset.insert {
+    ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+    ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm {
+    ['<C-y>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ['<C-j>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
@@ -417,7 +437,7 @@ cmp.setup {
         fallback()
       end
     end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+    ['<C-k>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -426,11 +446,13 @@ cmp.setup {
         fallback()
       end
     end, { 'i', 's' }),
+    ["<tab>"] = cmp.config.disable,
   },
   sources = {
-    { name = 'luasnip' },
-    { name = 'buffer', keyword_length = 4 },
-    { name = 'nvim_lsp',
+    { name = 'luasnip_choice', keyword_length = 3 },
+    { name = 'luasnip', keyword_length = 3},
+    { name = 'buffer', keyword_length = 5 },
+    { name = 'nvim_lsp',keyword_length = 3,
     entry_filter = function(entry, ctx)
       return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
     end
@@ -459,6 +481,13 @@ cmp.setup {
     ghost_text = true,
   }
 }
+
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
 -- Use buffer source for `/`.
 cmp.setup.cmdline('/', {
     completion = { autocomplete = false },
