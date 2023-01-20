@@ -1,0 +1,2241 @@
+snippet p1 "p 1" 
+	p 1 $TM_SELECTED_TEXT $0
+
+snippet p2 "p 2" 
+	p 2 $TM_SELECTED_TEXT $0
+
+snippet p3 "p 3" 
+	p 3 $TM_SELECTED_TEXT $0
+
+snippet p4 "p 4" 
+	p 4 $TM_SELECTED_TEXT $0
+
+snippet p5 "p 5" 
+	p 5 $TM_SELECTED_TEXT $0
+
+snippet p6 "p 6" 
+	p 6 $TM_SELECTED_TEXT $0
+
+snippet p7 "p 7" 
+	p 7 $TM_SELECTED_TEXT $0
+
+snippet p8 "p 8" 
+	p 8 $TM_SELECTED_TEXT $0
+
+snippet p9 "p 9" 
+	p 9 $TM_SELECTED_TEXT $0
+
+snippet only "only this" 
+	only $0
+
+snippet nnn "n"
+	${1:#} n $0
+
+snippet dum "independent ctrl FX"
+	dummy$0
+
+snippet once "once" 
+	once $ $0
+	 
+snippet scp "set cps" 
+	setcps (${1:110}/60/${2:4})$0
+
+snippet esp "set espGrid" 
+	${1:espgrid tidal
+	}
+	cpsEsp (${2:110}/60/4)
+	$0
+
+snippet mut "streamMute" 
+	mute $0
+
+snippet unm "streamUnmute" 
+	unmute $0
+
+snippet sol "streamSolo" 
+	solo $0
+
+snippet uns "streamUnsolo" 
+	unsolo $0
+
+snippet nua "streamNudgeAll" 
+	nudgeAll $0
+
+snippet all "streamAll" 
+	all $TM_SELECTED_TEXT $0
+
+snippet rcy "streamResetCycles" 
+	resetCycles $0
+
+
+# CONTROL FUNCTIONS
+# These functions are used to turn patterns of strings (words) or numbers into control patterns,
+# which govern how samples are played in the SuperDirt
+# This includes
+# audio control functions
+# sample manipulation functions
+# effect functions
+
+# AUDIO CONTROL FUNCTIONS
+
+snippet gai "gain" 
+	# gain $0
+
+snippet chan "channel ???" 
+	# channel $0
+
+snippet pan "pan" 
+	# pan "$1"$0
+
+snippet orb "orbit" 
+	# orbit $0
+
+
+# SAMPLE MANIPULATION FUNCTIONS
+
+snippet beg "begin" 
+	# begin $1 $0
+
+snippet end "end" 
+	# end $0
+
+snippet acc "accelerate" 
+	# accelerate $0
+
+snippet uni "fits in a cycle" 
+	# unit "c" $0
+
+snippet unis "fits x * in a cycle" 
+	# unit "c" # speed ${1:2} $0
+
+snippet loo "loop" 
+	# loop $0
+
+snippet leg "legato" 
+	# legato $0
+
+snippet sus "sustain" 
+	# sustain $0
+
+# envelope:
+snippet att "attack" 
+	# att ${1:"<0 0.1 0.3>"} $0
+
+snippet hol "hold - With att and rel!!!" 
+	# hold ${1:"<0.2 0.5>"}
+
+snippet rel "release" 
+	# rel ${1:"<0.1 0.3 0.6>"} $0
+
+snippet cut "cut" 
+	# cut $1 $0
+
+snippet cho "chop - cut sample in n parts" 
+	chop ${1:16} $ $0
+
+snippet gap "gap - chop and silence every other cut" 
+	gap ${1:32} $ $0
+
+snippet sli "slice - chop and rearrange with pat" 
+	slice ${1:8} ${2:"[6 4] 2 0"} $ $0
+
+snippet stri "striate - cut sample in parts and progress" 
+	${1:slow }${2:4 $} striate ${3:3} $ $0
+
+snippet strb "striateBy - striate with lenght of each cut" 
+	slow ${1:32} $ striate' ${2:32} (1/${3:16}) $ $0
+
+snippet spl "splice - chop rearr.pat, pitch to fit" 
+	splice ${1:8} ${2:"[6 4] 2 0"} $ $0
+
+snippet loo "loopAt - fit sample n cycles" 
+	loopAt $1 $ $0
+
+snippet gho "ghost - adds quieter pitched copies" 
+	ghost ${1:$} $0
+
+
+# HIGHER-ORDER FUNCTIONS - Change inside cycle -  
+
+snippet jux "juxBy" 
+	juxBy ${1:0.5} ($TM_SELECTED_TEXT) ${1:$}$0
+
+snippet lin "linger - divide and repeat fraction" 
+	linger ${1:(1/3)} ${2:$}$0
+
+snippet wit "within - apply func. between" 
+	within ( ${1:0.25}, ${2:0.75} ) ( $TM_SELECTED_TEXT3 )$0
+
+snippet zoo "zoom - play only between" 
+	zoom (${1:0.25}, ${2:0.75}) $TM_SELECTED_TEXT{3:$}$0
+
+snippet fit "fit - offset pat <<this" 
+	(fit ${1:3} $TM_SELECTED_TEXT ${2:"0 [~ 1] 2 1"})$0
+
+snippet fi' "fit'" 
+	fit' ${1:slice cycle portion} ${2:select x values} "${3:map slices(run x)}" "${4:rearrange slices}" $0
+
+snippet mas "mask" 
+	mask ("${1:1 ~ 1 1 ~ ~ 1 ~}") $
+
+snippet stru "struct - boolean pat mask" 
+	struct ("t(${1:3,8})") $0
+
+snippet sma "smash - striate slow-per-cycle" 
+	smash ${1:8} [${2:2}, ${3:3}, ${4:4}] $
+
+snippet stu "stut - repeat fadeout time-div" 
+	stut ${1:6} ${2:(1/3)} ${3:(1/6)} $
+
+snippet stuw "stutWith - repeat time-div func" 
+	stut' ${1:2} ${2:(1/3)} ( ${3:#} ${VISUAL:coarse "8 2 4"} ) $$0
+
+snippet fap "fastAppend - fit 2 pats in one cycle" 
+	fastAppend ($TM_SELECTED_TEXT)($1)$0
+
+snippet sup "superimpose - modified on top of original" 
+	superimpose (${VISUAL:fast 2}$1) $$0
+
+snippet wed "wedge - combine nth of 1st pat with 2nd" 
+	wedge (${1:1/3}) ($TM_SELECTED_TEXT) (${3:slow 8 $ s "amencutup*32" # n (irand 32)}) $0
+
+snippet off "off" 
+	off ${1:0.125} (${2:|+| n "<7 12>"})$0
+
+snippet tru "trunc - play fraction" 
+	trunc ${1:"<0.25 0.75>"} $0
+
+snippet spi "spin - offset and pan by 1/n of cycle" 
+	spin ${1:4} $ $0
+
+snippet euc "euclid - rhythmic structure" 
+	euclid ${1:3} ${2:8} ${3:$} $0
+
+snippet ply "ply - repeat each event n times" 
+	ply ${1:3} ${2:$} $0
+
+snippet plw "plyWith - repeat each apply func" 
+	plyWith ${1:3} (${2:*| legato 0.8}) ${3:$}$0
+
+snippet rot "rotate vals in a pat" 
+	rot $1 $ $0
+
+snippet ins "inside - divide and apply func to all divisions" 
+	inside ${1:2} ${2:rev}$0
+
+snippet out "outside - apply func outside the cycle (???)" 
+	outside ${1:4} ${2:(rev)}$0
+
+snippet lay "layer - multi funcs in one pat" 
+	layer [${1:rev}, ${2:id}] ${3:$}
+
+
+# HIGHER-ORDER FUNCTIONS - Change running cycles (composition) -  
+
+snippet eve "every" 
+	every ${1:4} $TM_SELECTED_TEXT{2:$} $0
+
+snippet evo' "every offset" 
+	every' ${1:4} ${2:1} (${3:$TM_SELECTED_TEXT}) ${4:$}$0
+
+snippet fix "fix - apply this only on that" 
+	fix ($TM_SELECTED_TEXT{1:# crush 3}) (${2:n "[1,4]"}) ${3:$}$0
+
+snippet fol "foldEvery - multiple every" 
+	foldEvery ${1:[3, 5, 7]} (${VISUAL:slow 2}) ${2:$}$0
+
+snippet ite "iter - divide pat and iteract" 
+	iter ${1:4} ${2:$}$0
+
+snippet ifp "ifp - test func." 
+	ifp ((== 0).(flip mod 2))
+		(${1:striate 4})
+	(${2:# coarse "24 48"}) ${3:$}$0
+
+snippet spr "spread ($) - play funcs in a list" 
+	spread ($) [ $TM_SELECTED_TEXT
+		,$2
+		,$3
+	] ${1:$}$0
+
+snippet spc "spread random" 
+	spreadr ($) [ $TM_SELECTED_TEXT
+		,$2
+		,$3
+	] ${1:$}$0
+
+snippet ur "ur" 
+	let pats "[
+			( "${1:a}",
+			$1$TM_SELECTED_TEXT
+			),
+			("$2",
+			$3
+			)
+		]
+		fx "[
+				(${4:"faster"}, ${5:fast 2} )
+				,${6:("$7", $8)}
+			]
+	in
+	p ${9:1} $ ur ${10:16} "${11:a:faster} $12" pats fx$0
+
+snippet pat "pattern for ur" 
+	,( "${1:}",
+		$TM_SELECTED_TEXT
+	)$0
+
+snippet wea "weave - apply pat to list of ctrls, with time offset" 
+	weave ${1:16} (${2:pan sine})
+		[
+			$3${VISUAL:"bd stk*2"},
+			$4
+		]
+	$0
+
+snippet wew "weaveWith apply pat to list of funcs, with time offset" 
+	weaveWith ${1:16} ("${2:bd stk}")
+		[
+			$1${VISUAL:fast 2},
+			${2:(# speed 0.5)}
+			${3:,}
+			$4
+	]
+	$0
+
+
+snippet whem "whenmod when modulo" 
+	whenmod ${1:8} ${2:6}$0
+
+snippet sqpl "seqPLoop" 
+	seqPLoop
+	[
+		(0, ${1:16},
+		$TM_SELECTED_TEXT2
+		)$0
+	]
+
+snippet seq "sequences" 
+	(${1:16}, ${2:32},
+		$TM_SELECTED_TEXT0
+	)
+
+snippet sta "stack" 
+	stack [
+		$TM_SELECTED_TEXT1
+		,$2
+	]$0
+
+snippet cat "cat" 
+	cat [
+		$TM_SELECTED_TEXT,
+		$2 $0
+	]
+
+snippet fac "fastcat" 
+	fastcat [
+		$1,
+		$2 $0
+	]
+
+snippet app "append - alternate between pats" 
+	append ($TM_SELECTED_TEXT)($1)$0
+
+snippet chu "chunk - divide pat, func to each part/cycle'" 
+	chunk ${1:4} ${2:(# speed 2)} ${3:$}$0
+
+snippet sew "sew - pat of bool to switch between 2 pats" 
+	sew "${1:t(11,16)}" ($TM_SELECTED_TEXT) ($2) $0
+
+snippet lin "lindenmayer - int /Lindm syst rset/init str" 
+	slow ${1:16} $ sound $ step' ["${2:feel:0}", "${3:sn:1}", "${4:bd:0}"]
+	(take 512 $ lindenmayer ${5:5} "${6:0:1~~~,1:0~~~2~~~~~0~~~2~,2:2~1~,~:~~1~}" "${7:0}")
+
+
+# UTILITIES 
+
+snippet ran "range" 
+	range ${1:0.25} ${2:0.75} $0
+
+snippet rax "rangex - exponential range" 
+	rangex ${1:20} ${2:2000} $0
+
+snippet sil "silence" 
+	silence $0
+
+snippet seg "segment" 
+	segment ${1:1} $0
+
+snippet sca "scan - run starting from 1" 
+	(scan ${1:8}) $0
+
+snippet sin "sine oscillator" 
+	( ${1:slow 4}$2 sine ) $0
+
+snippet cos "cos osci - sine shifted 1/4 cycle" 
+	( ${1:slow 4}$2 cosine ) $0
+
+snippet squ "square oscillator" 
+	( ${1:fast 4}$2 square ) $0
+
+snippet tri "triangle oscillator" 
+	( ${1:slow 4}$2 tri ) $0
+
+snippet saw "sawtooth oscillator" 
+	( ${1:slow 4}$2 saw ) $0
+
+snippet isaw "inv sawtooth oscillator" 
+	( ${1:slow 4}$2 isaw ) $0
+
+snippet list "streamList tidal" 
+	list $0
+
+
+# TIME FUNCTIONS 
+
+snippet bra "brak" 
+	brak $$0
+
+snippet fas "fast" 
+	fast ${1:2}$0
+
+snippet hur "hurry" 
+	hurry ${1:2} ${2:$}$0
+
+snippet rew "rewind <~" 
+	${1:0.25} <~ ${2:$}$0
+
+snippet for "forward ~>" 
+	${1:0.25} ~> ${2:$}$0
+
+snippet pal "palindrome" 
+	palindrome ${1:$}$0
+
+snippet rec "repeatCycles" 
+	repeatCycles ${1:3} ${2:$}$0
+
+snippet rev "revert" 
+	rev ${1:$}$0
+
+snippet slo "slow" 
+	slow ${1:2} ${2:$}$0
+
+snippet swi "swingBy" 
+	swingBy (${1:1/3}) ${2:4} ${2:$}$0
+
+snippet nud "nudge" 
+	# nudge ${1:(slow ${2:4} $ sine$3)}$0
+
+
+# RANDOMNESS AND CHANCE 
+
+snippet cho "choose - continuous" 
+	choose ${1:[0,2,5]}$0
+
+snippet chb "chooseBy" 
+	chooseBy "${1:0 0.25 0.5}" [${2:"a","","c","d"}]$0
+
+snippet wcho "wchoose" 
+	wchoose [${1:(0,0.25)},${2:(2,0.5)},${3:(3,0.25)}$4]$0
+
+snippet wchb "wchooseBy" 
+	wchooseBy [${1:(0,0.25)},${2:(2,0.5)},${3:(3,0.25)}$4]$0
+
+snippet dby "degradeBy" 
+	degradeBy ${1:0.2} $0
+
+snippet per "perlin" 
+	( ${1:fast 32 $} perlin ${2:+ 0.5})$0
+
+snippet pew "perlinWith" 
+	(perlinWith ${1:(saw * 4)} ${2:* 2000})$0
+
+snippet pe2 "perlin2d" 
+	(perlin2 ${1:(sine*4)} ${2:+ 1})$0
+
+snippet p2w "perlin2With" 
+	(${1:range 60 5000 $} perlin2With (${2:cosine*2}) (${3:sine*2}))$0
+
+snippet cat "randcat" 
+	randcat [
+			$1,
+		$2,
+		$3 $0
+	]
+
+snippet sli "randslice - chop rand" 
+	${1:fast 4 $} randslice ${2:32} $$0
+
+snippet scr "scramble" 
+	scramble ${1:3} $0
+
+snippet shu "shuffle" 
+	shuffle ${1:6} $0
+
+snippet som "sometimesBy" 
+	sometimesBy ${1:0.2} (TM_SELECTED_TEXT) ${3:$}$0
+
+snippet soc "someCyclesBy" 
+	someCyclesBy ${1:0.25} (TM_SELECTED_TEXT2) ${3:$}$0
+
+snippet str "stripe - repeat pat-rand-speeds" 
+	stripe ${1:3} $ $TM_SELECTED_TEXT0
+
+snippet sls "slowstripe - rep. p r speed > n slow" 
+	slowstripe ${1:3} $ $TM_SELECTED_TEXT0
+
+
+# TRANSITIONS - T
+
+snippet T_ant "anticIn drop pat @ t cycles" 
+	anticipateIn ${1:pat} ${2:time} $ $TM_SELECTED_TEXT0
+
+snippet T_clu "clutchIn - degr curr pat <> while undegr next" 
+	clutchIn ${1:pat} ${2:time} $TM_SELECTED_TEXT$0
+
+snippet T_hip "histpan - Pans last n versions of pat across field" 
+	histpan ${1:pat} ${2:time} $$0
+
+snippet T_int "interpIn parameters interp" 
+	interpolateIn ${1:pat} ${2:time}$$0
+
+snippet T_jui "jumpIn - jump unaligned into pat after cycleCount" 
+	jumpIn ${1:pat} ${2:time} $$0
+
+snippet T_ju' "jumpIn' - jump at cycle boundary into pat after cycleCount" 
+	jumpIn' ${1:pat} ${2:time} $$0
+
+snippet T_jum "jumpMod - jump at cycle boundary" 
+	jumpMod ${1:pat} ${2:time} $$0
+
+snippet T_wai "wait - stop for t before new pat" 
+	wait ${1:pat} ${2:time} $$0
+
+snippet T_wat "waitT - stop for t before transition" 
+	waitT ${1:pat} ${2:(xfadeIn 8)} ${3:time} $$0
+
+snippet T_xfa "xFadeIn" 
+	xfadeIn ${1:pat} ${2:time} $$0
+
+snippet T_mor "mortal - degrades in t-cycles after lifespan" 
+	mortal ${1:pat} ${2:lifespan} ${3:t} $$0
+
+
+# EFFECT FUNCTIONS - f
+
+snippet f_sha "shape" 
+	# shape ${1:0.25} $0
+
+snippet f_hpf "high-pass filter" 
+	# hpf ${1:"100 1000 2000 5000"} # hpq ${2:"0 0.2 0.4 0.6"} $0
+
+snippet f_bpf "band-pass filter" 
+	# bpf ${1:"100 1000 2000"} # bpq ${2:"<0.5 1 2>"} $0
+
+snippet f_cru "crush 16<>1" 
+	# crush ${1:"<16 8 4>"} $0
+
+snippet f_coa "coarse" 
+	# coarse ${1:"<4 8 16 24>"} $0
+
+snippet f_lpf "low-pass filter" 
+	# lpf ${1:"100 1000 2000"} # lpq ${2:0.25} $0
+
+snippet f_tre "tremolo" 
+	# tremr ${1:1} # tremdp ${2:0.5} $0
+
+snippet f_pha "phaser" 
+	# phasr ${1:1} # phadp ${2:0.5} $0
+
+snippet f_vow "vowel" 
+	# vowel "${1:e a ~ [ o u]}" $0
+
+snippet f_del "delay" 
+	# delayfb ${1:0.5} # delayt ${2:0.25} # lock ${3:"<1 0.33>/4"} # delay ${4:0.5} $0
+
+snippet f_rev "reverb" 
+	# room ${1:0.5} # size ${2:0.25} # dry ${3:0.75} $0
+
+snippet f_les "leslie" 
+	# leslie 1 # lsize ${1:2.8} # lrate ${2:6.7}
+
+snippet f_wlo "waveloss 0<>100" 
+	# waveloss ${1:"20 66.6 80 10"} $0
+
+snippet f_sqz "squiz pitchShifter" 
+	# squiz ${1:"1 2 8 256"} $0
+
+snippet f_fsh "freq shift" 
+	# fshift ${1:0} # fshiftnote ${2:"0 3 5"} # fshiftphase ${3:0}
+	$0
+
+snippet f_tri "triode distortion" 
+	# triode ${1:0.5}
+	$0
+
+snippet f_kru "krush" 
+	# krush ${1:1} # kcutoff ${2:800} $0
+
+snippet f_oct "octer harmonics" 
+	# octer ${1:1}
+	$0
+
+snippet f_octs "octersub harmonics" 
+	# octersub ${1:0.5}
+	$0
+
+snippet f_octss "octersubsub harmonics" 
+	# octersubsub ${1:0.25}$0
+
+snippet f_rin "ring modulator - amount freq slide" 
+	# ring ${1:0.5} # ringf ${2:800} # ringdf ${3:0.2}$0
+
+snippet rin "ring modulator - amount freq slide" 
+	# ring ${1:0.5} # ringf ${2:800} # ringdf ${3:0.2}$0
+
+snippet f_dis "distortion" 
+	# distort ${1:0.5} $0
+
+snippet f_sde "spectral delay " 
+	# tsdelay ${1:0.5} # xsdelay ${2:0.5}$0
+
+snippet f_maf "magnitude freeze" 
+	# freeze ${1:1}$0
+
+snippet f_scf "spectral comb filter" 
+	# comb ${1:0.5}$0
+
+snippet f_bsc "bin scrambling" 
+	# scram ${1:0.5}$0
+
+snippet f_mgs "magnitude smearing" 
+	# smear ${1:0.5}$0
+
+snippet f_bis "bin shifting" 
+	# binshift ${1:0.25}$0
+
+snippet f_shp "spectral high-pass filter" 
+	# hbrick ${1:0.5}$0
+
+snippet f_slp "spectral low-pass filer" 
+	# lbrick ${1:0.5}$0
+
+snippet f_sco "spectral conformer" 
+	# real ${1:0.5} # imag ${2:0.5}$0
+
+snippet f_sen "spectral enhance" 
+	# enhance ${1:0.5}$0
+
+snippet f_djf "DJ filter" 
+	# djf ${1:0.5}$0
+
+
+# BASIC SUPERDIRT SYNTHS
+
+snippet y_imp "modulated band limited impulse" 
+	imp
+
+snippet y_psi "psin - modulated phase mod sines" 
+	psin
+
+snippet y_pms "cursor modulated phase mod sines" 
+	pmsin
+
+snippet y_in "live audio input" 
+	in
+
+snippet y_inr "pitch shifted live audio input" 
+	inr
+
+snippet y_gab "gabor grain" 
+	gabor
+
+snippet y_cyc "cyclo - shepard on a cycle" 
+	cyclo
+
+
+
+# EXTRA SUPERDIRT SYNTHS
+
+snippet y_man "superMandolin - sustain accelerate detune" 
+	supermandolin$0
+
+snippet y_gon "superGong - decay voice accelerate" 
+	supergong$0
+
+snippet y_pia "superPiano - velocity sustain" 
+	superpiano$0
+
+snippet y_hex "superHex - accelerate sustain rate" 
+	superhex$0
+
+snippet y_kic "superKick - n sustain pitch1 decay" 
+	superkick$0
+
+snippet y_808 "super808 - n sustain speed voice" 
+	super808
+
+snippet y_hat "superHat - n sustain accelerate" 
+	superhat
+
+snippet y_sna "superSnare - n decay sustain accelerate" 
+	supersnare
+
+snippet y_cla "superClap - n decay speed pitch1 sustain" 
+	superclap
+
+snippet y_sir "superSiren" 
+	supersiren
+
+
+# The next four synths respond to the following parameters in addition to gain, pan, n,
+# and all the "effect" parameters (including attack, hold, and release).
+# Default values in parenthese
+
+# sustain - scales overall duration
+# decay(0) - amount of decay after initial attack
+# accelerate(0) - pitch glide
+# semitone(12) - how far off in pitch the secondary oscillator is (need not be integer)
+# pitch1(1) - filter frequency scaling multiplier, the frequency itself follows the pitch set by "n"
+# speed(1)- LFO rate
+# lfo(1) - how much the LFO affects the filter frequency
+# resonance(0.2) - filter resonance
+# voice(0.5) - depends on the individual synth
+
+snippet y_squ "superSquare - sust dec accel semitone pitch1 lfo speed resonance voice" 
+	supersquare
+
+snippet y_saw "superSaw - sust dec accel semitone pitch1 lfo speed resonance voice" 
+	supersaw
+
+snippet y_pwm "superPwm - sust dec accel semitone pitch1 lfo speed resonance voice" 
+	superpwm
+
+snippet y_com "superComparator - sust dec accel semitone pitch1 lfo speed resonance voice" 
+	spercomparator
+
+# -----------------------------------------------------------------------------------------
+snippet y_chi "superChip - slide speed accelerate pitch2 pitch3 voice" 
+	superchip
+
+snippet y_noi "superNoise - n voice accelerate speed pitch1 slide resonance" 
+	supernoise
+
+snippet y_for "superFork - sustain accelerate" 
+	superfork
+
+snippet y_ham "superHammond - voice decay" 
+	superhammond
+
+snippet y_vib "superVibe - decay velocity accelerate modamp modfreq detune" 
+	supervibe
+
+snippet y_ho "superHoover - slide decay accelerate" 
+	superhoover
+
+snippet y_zow "superZow - decay accelerate slide detune" 
+	superzow
+
+snippet y_sta "superStatic - sustain" 
+	superstatic
+
+snippet y_gri "superGrind - accelerate detune voice speed" 
+	supergrind
+
+snippet y_pri "superPrimes - accelerate detune voice speed" 
+	superprimes
+
+snippet y_wav "superWavemechanics - accelerate detune voice resonance" 
+	superwavemechanics
+
+snippet y_tron "superTron - accelerate detune voice" 
+	supertron
+
+snippet y_ree "superReese - accelerate voice detune" 
+	superreese
+
+
+# SYNTH PARAMETERS
+
+snippet p_oct "octave" 
+	# octave $0
+
+snippet p_det "detune" 
+	# detune ${1:0.2}$0
+
+snippet p_voi "voice" 
+	# voice ${1:0.5}$0
+
+snippet p_up "up" 
+	# up "$1" $0
+
+snippet p_pit1 "pitch1 - filter freq scaling multiplier" 
+	# pitch1 ${1:1}$0 
+
+
+# SKMECS SYNTHS
+
+snippet k_sti "stiff" 
+	stiff
+
+snippet k_pia "piano" 
+	piano
+
+snippet k_ata "atari" 
+	atari$0
+
+snippet k_bow "bow" 
+	bow$0
+
+snippet k_wis "windsaw" 
+	windsaw$0
+
+snippet k_saw "saw" 
+	saw$0
+
+snippet k_baz "bazz" 
+	bazz$0
+
+snippet k_bitr "bitr" 
+	bitr
+
+snippet k_dsa	"bitr - downsample" 
+	# downsamp ${1:"8"}$0
+
+snippet mfq "bitr - mod freq Q" 
+	# modfq ${1:"44"} 
+
+snippet lfod "rhodes - lfodepth" 
+	# lfodepth ${1:4}$0
+
+snippet lfos "rhodes - lfospeed" 
+	# lfospeed ${1:0.05}$0
+
+
+# SKMECS ORBS FX _O
+
+snippet mdel "modelay" 
+	# modelay ${1:0.2} $0
+
+snippet tape "tape" 
+	# tape ${1:1} $0
+
+snippet pit "pitchShift" 
+	# pitch ${1:1} $0
+
+snippet wah "wah" 
+	# wah ${1:0.2} $0
+
+snippet lfo "LFO" 
+	# llfo ${1:0.2} $0
+
+snippet com "compressor" 
+	# compt ${1:0} $0
+
+snippet ampf "ampFin" 
+	# ampFin ${1:0} $0
+
+snippet mod "modelay" 
+	# modelay ${1:0} $0
+
+
+# SKMECS ORB FX PARAMETERS _o
+
+snippet pideg "pitch/degree" 
+	# pideg ${1:0} $0
+
+snippet pdi "pitch dispersion" 
+	# pdisp ${1:0.05} $0
+
+snippet tdi "time dispersion" 
+	# tdisp ${1:0.1} $0
+
+snippet sli "pitch slide" 
+	# slide ${1:0.2} $0
+
+snippet tra "trate tape rate" 
+	# trate ${1:0.25} $0
+
+snippet tph "tphase tape phase" 
+	# tphase ${1:0} $0
+
+snippet tde "tdepth tape depth" 
+	# tdepth ${1:0.5} $0
+
+snippet tof "toffset tape offset" 
+	# toffset ${1:0.5} $0
+
+snippet wra "wah rate" 
+	# wrate ${1:1} $0
+
+snippet dep "wah depth" 
+	# depth ${1:0.75} $0
+
+snippet wss "wah sine saw" 
+	# sinsaw ${1:0} $0
+
+snippet jra "wah jitter rate" 
+	# jfreq ${1:1} $0
+
+snippet jde "wah jitter depth" 
+	# jdepth ${1:0.1} $0
+
+snippet sis "lfo sin saw pulse" 
+	# sisap ${1:0} $0
+
+snippet lra "lfo rate" 
+	# lrate ${1:0.125} $0
+
+snippet iph "lfo osc/wave phase" 
+	# iphase ${1:0} $0
+
+snippet lwi "lfo width" 
+	# lwidth ${1:0.5} $0
+
+snippet midf "lfo low-cut freq" 
+	# midfreq ${1:60} $0
+
+snippet hif "lfo hi-cut freq" 
+	# hifreq ${1:20000} $0
+
+snippet ctr "comp control signal" 
+	# cctrl ${1:0} $0
+
+snippet thr "comp threshold" 
+	# thresh ${1:0.5} $0
+
+snippet sloa "comp slope above" 
+	# slopea ${1:1} $0
+
+snippet cla "comp attack" 
+	# clamp ${1:0.01} $0
+
+snippet rex "comp release" 
+	# relax ${1:0.1} $0
+
+snippet lim "limDrive" 
+	# limDrive ${1:1.25} $0
+
+snippet ampl "ampLimit" 
+	# ampLimit ${1:1} $0
+
+snippet pamp "postAmp" 
+	# postAmp ${1:1} $0
+
+
+# My Tidal Fxs
+snippet satur "saturator" 
+	# satur ${1:0.5} $0
+
+snippet sind "index of satur" 
+	# sind ${1:4} $0
+
+snippet smul "satur gain" 
+	# smul ${1:0.25} $0
+
+
+# VSTs
+
+# reverb (TAL Verb) _v
+
+snippet v_vdry "vst reverb dry" 
+	# vdry $0
+
+snippet v_vwet "vst reverb wet" 
+	# vwet $0
+
+snippet v_vloc "vst reverb locut" 
+	# vlocut $0
+
+snippet v_vhic "vst reverb hicut" 
+	# vhicut $0
+
+
+# Phosycon - Acid
+
+snippet acut "acid cutoff" 
+	# acut $0
+
+snippet ares "acid resonance" 
+	# ares $0
+
+snippet aswt "acid sweep time" 
+	# asweept $0
+
+snippet amod "acid env mod" 
+	# amod $0
+
+snippet aena "acid env attk" 
+	# aenvatt $0
+
+snippet adec "acid env decay" 
+	# adec $0
+
+snippet awave "acid wave shape" 
+	# awave $0
+
+snippet aadec "acid accent decay" 
+	# aadec $0
+
+snippet aatt "acid attack" 
+	# aatt $0
+
+snippet aena "acid env accent" 
+	# aenvacc $0
+
+
+# TAL-Noise
+
+snippet v_tfo1r "tal lfo1 rate" 
+	# lfo1r $0
+
+snippet v_tvol "talnoise - volume" 
+	# tvol $0
+
+snippet v_tftype "talnoise - filtertype" 
+	# tftype $0
+
+snippet v_tcut "talnoise - cutoff" 
+	# tcut $0
+
+snippet v_tres "talnoise - resonance" 
+	# tres $0
+
+snippet v_tkfol "talnoise - keyfollow" 
+	# tkfol $0
+
+snippet v_tfcon "talnoise - filtercontour" 
+	# tfcon $0
+
+snippet v_tfatt "talnoise - filterattack" 
+	# tfatt $0
+
+snippet v_tfdec "talnoise - filterdecay" 
+	# tfdec $0
+
+snippet v_tfsus "talnoise - filtersustain" 
+	# tfsus $0
+
+snippet v_tfrel "talnoise - filterrelease" 
+	# tfrel $0
+
+snippet v_tampa "talnoise - ampattack" 
+	# tampa $0
+
+snippet v_tampd "talnoise - ampdecay" 
+	# tampd $0
+
+snippet v_tamps "talnoise - ampsustain" 
+	# tamps $0
+
+snippet v_tampr "talnoise - amprelease" 
+	# tampr $0
+
+snippet v_tosc1v "talnoise - osc1volume" 
+	# tosc1v $0
+
+snippet v_tosc2v "talnoise - osc2volume" 
+	# tosc2v $0
+
+snippet v_tosc3v "talnoise - osc3volume" 
+	# tosc3v $0
+
+snippet v_tosc1wf "talnoise - osc1waveform" 
+	# tosc1wf $0
+
+snippet v_tosc2wf "talnoise - osc2waveform" 
+	# tosc2wf $0
+
+snippet v_tlfo1r "talnoise - lfo1rate" 
+	# tlfo1r $0
+
+snippet v_tlfo2r "talnoise - lfo2rate" 
+	# tlfo2r $0
+
+snippet v_tlfo1a "talnoise - lfo1amount" 
+	# tlfo1a $0
+
+snippet v_tlfo2a "talnoise - lfo2amount" 
+	# tlfo2a $0
+
+snippet v_mpluk "modo-bass bpluk" 
+	# bpluk
+
+snippet v_mbend "modo-bass bbend" 
+	# bbend
+
+snippet v_mslide "modo-bass bslide" 
+	# bslide
+
+snippet v_mhamp "modo-bass bhamp" 
+	# bhamp
+
+snippet v_mmute "modo-bass bmute" 
+	# bmute
+
+snippet v_mlsli "modo-bass slide" 
+	# blsli
+
+snippet v_mghos "modo-bass bghos" 
+	# bghos
+
+snippet v_mfing "modo-bass finger" 
+	# finger
+
+snippet v_mpalh "modo-bass palheta" 
+	# palheta
+
+snippet v_mslap "modo-bass slap" 
+	# slap
+
+snippet v_mharm "modo-bass bharm" 
+	# bharm
+
+snippet v_mring "modo-bass bring" 
+	# bring
+
+snippet v_mleft "modo-bass bleft" 
+	# bleft
+
+snippet v_mvol "modo-bass amp volume" 
+	# bvol
+
+snippet v_mforce "modo-bass bforce" 
+	# bforce
+
+
+# ARPEGGIATOR MODES - a
+
+snippet a_up "up - arp mode" 
+	up
+
+snippet a_dow "down - arp mode" 
+	down
+
+snippet a_upd "updown - arp mode" 
+	updown
+
+snippet a_dou "downup - arp mode" 
+	downup
+
+snippet a_uad "up&down  - arp mode" 
+	up&down
+
+snippet a_dau "down&up - arp mode" 
+	down&up
+
+snippet a_con "converge - arp mode" 
+	converge
+
+snippet a_div "diverge - arp mode" 
+	diverge
+
+snippet a_dis "disconverge - arp mode" 
+	disconverge
+
+snippet a_piu "pinkyup - arp mode" 
+	pinkyup
+
+snippet a_pid "pinkydown - arp mode" 
+	pinkydown
+
+snippet a_thuu "thumbup - arp mode" 
+	thumbup
+
+snippet a_thud "thumbupdown - arp mode" 
+	thumbupdown
+
+
+# CHORDS - c
+
+snippet c_maj "major [0,4,7]" 
+	'maj
+
+snippet c_min "minor [0,3,7]" 
+	'min
+
+snippet c_maj7 "major7 [0,4,7,11]" 
+	'maj7
+
+snippet c_dom7 "dom7 [0,4,7,10]" 
+	'dom7
+
+snippet c_min7 "minor7 [0,3,7,10]" 
+	'min7
+
+snippet c_aug "aug [0,4,8]" 
+	'aug
+
+snippet c_dim "dim [0,3,6]" 
+	'dim
+
+snippet c_dim7 "dim7 [0,3,6,9]" 
+	'dim7
+
+snippet c_one "one [0]" 
+	'one
+
+snippet c_fiv "five [0,7]" 
+	'five
+
+snippet c_plu "plus [0,4,8]" 
+	'plus
+
+snippet c_sha5 "sharp5 [0,4,8]" 
+	'sharp5
+
+snippet c_msha5 "msharp5 [0,3,8]" 
+	'msharp5
+
+snippet c_sus2 "sus2 [0,2,7]" 
+	'sus2
+
+snippet c_sus4 "sus4 [0,5,7]" 
+	'sus4
+
+snippet c_six "six [0,4,7,9]" 
+	'six
+
+snippet c_m6 "m6 [0,3,7,9]" 
+	'm6
+
+snippet c_7sus2 "sevenSus2 [0,2,7,10]" 
+	'7sus2
+
+snippet c_7sus4 "sevenSus4 [0,5,7,10]" 
+	'7sus4
+
+snippet c_7flat5 "sevenFlat5 [0,4,6,10]" 
+	'7f5
+
+snippet c_m7f5 "m7flat5 [0,3,6,10]" 
+	'm7f5
+
+snippet c_7s5 "sevenSharp5 [0,4,8,10]" 
+	'7s5
+
+snippet c_m7s5 "m7sharp5 [0,3,8,10]" 
+	m7s5
+
+snippet c_nin "nine [0,4,7,10,14]" 
+	nine
+
+snippet c_m9 "m9 [0,3,7,10,14]" 
+	'm9
+
+snippet c_m7s9 "m7sharp9 [0,3,7,10,14]" 
+	'm7s9
+
+snippet c_maj9 "maj9 [0,4,7,11,14]" 
+	'maj9
+
+snippet c_9sus4 "nineSus4 [0,5,7,10,14]" 
+	'9sus4
+
+snippet c_6by9 "sixby9 [0,4,7,9,14]" 
+	'6by9
+
+snippet c_m6by9 "m6by9 [0,3,9,7,14]" 
+	'm6by9
+
+snippet c_7f9 "sevenFlat9 [0,4,7,10,13]" 
+	'7f9
+
+snippet c_m7f9 "m7flat9 [0,3,7,10,13]" 
+	'm7f9
+
+snippet c_7f10 "sevenFlat10 [0,4,7,10,15]" 
+	'7f10
+
+snippet c_9s5 "nineSharp5 [0,1,13]" 
+	'9s5
+
+snippet c_m9s5 "m9sharp5 [0,1,14]" 
+	'm9s5
+
+snippet c_7sf9 "sevenSharp5flat9 [0,4,8,10,13]" 
+	'7s5f9
+
+snippet c_m7s5f9 "m7sharp5flat9 [0,3,8,10,13]" 
+	'm7s5f9
+
+snippet c_11 "eleven [0,4,7,10,14,17]" 
+	'11
+
+snippet c_m11 "m11 [0,3,7,10,14,17]" 
+	'm11
+
+snippet c_maj11 "maj11 [0,4,7,11,14,17]" 
+	'm11
+
+snippet c_11s "elevenSharp [0,4,7,10,14,18]" 
+	'11s
+
+snippet c_m11s "m11sharp [0,3,7,10,14,18]" 
+	'm11s
+
+snippet c_13 "thirteen [0,4,7,10,14,17,21]" 
+	'13
+
+snippet c_m13 "m13 [0,3,7,10,14,17,21]" 
+	'm13
+
+# SCALES AND TONAL FUNCTIONS - S
+
+snippet arg "arpeggiate - spreads chords of note n over time" 
+	(arpg "'${1:major7} [${2:20,4,7,11}]") $0
+
+snippet arp "arp - root note / chord type / additional notes" 
+	(arp "${1:<up down diverge>}" "${2:<a'm9'8 e'7sus4'8>}" )$0
+
+snippet list "scaleList" 
+	scaleList
+
+snippet tos "toScale" 
+	(toScale ${1:[0,2,3,5,7,8,10]} "${2:0 1 2 3 4 5 6 7}")$0
+
+snippet scl "scale" 
+	scale ${1:"ritusen"} ${2:"0 .. 7"} $0
+
+# five notes scales
+snippet mpe "minPent [0,3,5,7,10]" 
+	"minPent" $0
+
+snippet Mpe "majPent [0,2,4,7,9]" 
+	"majPent" $0
+
+snippet rit "ritusen [0,2,5,7,9]" 
+	"ritusen" $0
+
+snippet egy "egyptian [0,2,5,7,10]" 
+	"egyptian" $0
+
+snippet kum "kumai [0,2,3,7,9]" 
+	"kumai" $0
+
+snippet hir "hirajoshi [0,2,3,7,8]" 
+	"hirajoshi" $0
+
+snippet iwa "iwato [0,1,5,6,10]" 
+	"iwato" $0
+
+snippet chin "chinese [0,4,6,7,11]" 
+	"chinese" $0
+
+snippet ind "indian [0,4,5,7,10]" 
+	"indian" $0
+
+snippet pel "pelog [0,1,3,7,8]" 
+	"pelog" $0
+
+snippet pro "prometheus [0,2,4,6,11]" 
+	"prometheus" $0
+
+snippet scr "scriabin [0,1,4,7,9]" 
+	"scriabin" $0
+
+
+# han chinese pentatonic scales
+snippet gon "gong [0,2,4,7,9]" 
+	"gong" $0
+
+snippet sha "shang [0,2,5,7,10]" 
+	"shang" $0
+
+snippet jia "jiao [0,3,5,8,10]" 
+	"jiao" $0
+
+snippet zhi "zhi [0,2,5,7,9]" 
+	"zhi" $0
+
+snippet yu "yu [0,3,5,7,10]" 
+	"yu" $0
+
+
+# 6 note scales
+snippet who "whole' [0,2,4,6,8,10]" 
+	"whol" $0
+
+snippet aug "augmented [0,3,4,7,8,11]" 
+	"augmented" $0
+
+snippet aug2 "augmented2 [0,1,4,5,8,9]" 
+	"augmented2" $0
+
+
+# hexatonic modes with no tritone
+snippet hexM7 "hexMajor7 [0,2,4,7,9,11]" 
+	"hexMajor7" $0
+
+snippet hexd "hexDorian [0,2,3,5,7,10]" 
+	"hexDorian" $0
+
+snippet hexp "hexPhrygian [0,1,3,5,8,10]" 
+	"hexPhrygian" $0
+
+snippet hexs "hexSus [0,2,5,7,9,10]" 
+	"hexSus" $0
+
+snippet hexM6 "hexMajor6 [0,2,4,5,7,9]" 
+	"hexMajor6" $0
+
+snippet hexa "hexAeolian [0,3,5,7,8,10]" 
+	"hexAeolian" $0
+
+
+# 7 note scales
+snippet Maj "major [0,2,4,5,7,9,11]" 
+	"major" $0
+
+snippet ion "ionian [0,2,4,5,7,9,11]" 
+	"ionian" $0
+
+snippet dor "dorian [0,2,3,5,7,9,10]" 
+	"dorian" $0
+
+snippet phr "phrygian [0,1,3,5,7,8,10]" 
+	"phrygian" $0
+
+snippet lyd "lydian [0,2,4,6,7,9,11]" 
+	"lydian" $0
+
+snippet mix "mixolydian [0,2,4,5,7,9,10]" 
+	"mixolydian" $0
+
+snippet aeo "aeolian [0,2,3,5,7,8,10]" 
+	"aeolian" $0
+
+snippet min "minor [0,2,3,5,7,8,10]" 
+	"minor" $0
+
+snippet loc "locrian [0,1,3,5,6,8,10]" 
+	"locrian" $0
+
+snippet harm "harmonicMinor [0,2,3,5,7,8,11]" 
+	"harmonicMinor" $0
+
+snippet harM "harmonicMajor [0,2,4,5,7,8,11]" 
+	"harmonicMajor" $0
+
+snippet melm "melodicMinor [0,2,3,5,7,9,11]" 
+	"melodicMinor" $0
+
+snippet melmd "melodicMinorDesc [0,2,3,5,7,8,10]" 
+	"melodicMinorDesc" $0
+
+snippet melM "melodicMajor [0,2,4,5,7,8,10]" 
+	"melodicMajor" $0
+
+snippet barM "bartok melodicMajor" 
+	"bartok" $0
+
+snippet hinM "hindu melodicMajor" 
+	"hindu" $0
+
+
+# raga modes
+snippet tod "todi [0,1,3,6,7,8,11]" 
+	"todi" $0
+
+snippet pur "purvi [0,1,4,6,7,8,11]" 
+	"purvi" $0
+
+snippet mar "marva [0,1,4,6,7,9,11]" 
+	"marva" $0
+
+snippet bha "bhairav [0,1,4,5,7,8,11]" 
+	"bhairav" $0
+
+snippet ahi "ahirbhairav [0,1,4,5,7,9,10]" 
+	"ahirbhairav" $0
+
+snippet sup "superLocrian [0,1,3,4,6,8,10]" 
+	"superLocrian" $0
+
+snippet romm "romanianMinor [0,2,3,6,7,9,10]" 
+	"romanianMinor" $0
+
+snippet hunm "hungarianMinor [0,2,3,6,7,8,11]" 
+	"hungarianMinor" $0
+
+snippet neam "neapolitanMinor [0,1,3,5,7,8,11]" 
+	"neapolitanMinor" $0
+
+snippet eni "enigmatic [0,1,4,6,8,10,11]" 
+	"enigmatic" $0
+
+snippet spa "spanish [0,1,4,5,7,8,10]" 
+	"spanish" $0
+
+
+# modes of whole tones with added note ->
+snippet lea "leadingWhole [0,2,4,6,8,10,11]" 
+	"leadingWhole" $0
+
+snippet lydm "lydianMinor [0,2,4,6,7,8,10]" 
+	"lydianMinor" $0
+
+snippet neaM "neapolitanMajor [0,1,3,5,7,9,11]" 
+	"neapolitanMajor" $0
+
+snippet locM "locrianMajor [0,2,4,5,6,8,10]" 
+	"locrianMajor" $0
+
+
+# 8 note scales
+snippet dim "diminished [0,1,3,4,6,7,9,10]" 
+	"diminished" $0
+
+snippet di2 "diminished2 [0,2,3,5,6,8,9,11]" 
+	"diminished2" $0
+
+
+# modes of limited transposition
+snippet me1 "messiaen1 whole'" 
+	"messiaen1" $0
+
+snippet me2 "messiaen2 diminished" 
+	"messiaen2" $0
+
+snippet me3 "messiaen3 [0, 2, 3, 4, 6, 7, 8, 10, 11]" 
+	"messiaen3" $0
+
+snippet me4 "messiaen4 [0, 1, 2, 5, 6, 7, 8, 11]" 
+	"messiaen4" $0
+
+snippet me5 "messiaen5 [0, 1, 5, 6, 7, 11]" 
+	"messiaen5" $0
+
+snippet me6 "messiaen6 [0, 2, 4, 5, 6, 8, 10, 11]" 
+	"messiaen6" $0
+
+snippet me7 "messiaen7 [0, 1, 2, 3, 5, 6, 7, 8, 9, 11]" 
+	"messiaen7" $0
+
+
+# 12 note scales
+snippet cho "chromatic [0,1,2,3,4,5,6,7,8,9,10,11]" 
+	"chromatic" $0
+
+
+# SAMPLES ###########################
+
+# 110 BPM b_
+
+snippet b_caf "bpm110 cafe6a 2" 
+	cafe6a
+
+snippet b_casa "bpm110 casaverde9a 1" 
+	casaverde9a
+
+snippet b_cav "bpm110 cavaco10b 1" 
+	cavaco10b
+
+snippet b_cav2 "bpm110 cavaco8a 1" 
+	cavaco8a
+
+snippet b_cax "bpm110 caxixi6a 1" 
+	caxixi6a
+
+snippet b_cho "bpm110 chorei5a 1" 
+	chorei5a
+
+snippet b_cor2 "bpm110 corone9a 1" 
+	corone9a
+
+snippet b_cui "bpm110 cuica4a4a 1" 
+	cuica4a4a
+
+snippet b_del "bpm110 delasoul11a 1" 
+	delasoul11a
+
+snippet b_deu "bpm110 deus11a 1" 
+	deus11a
+
+snippet b_dim "bpm110 dimelo12a 1" 
+	dimelo12a
+
+snippet b_dis "bpm110 dis7ab 1" 
+	dis7ab
+
+snippet b_dr_ "bpm110 dr_edit 23" 
+	dr_edit
+
+snippet b_eas "bpm110 easiest6a 1" 
+	easiest6a
+
+snippet b_emb "bpm110 embolada7ab 1" 
+	embolada7ab
+
+snippet b_eth "bpm110 ethiot_1a 1" 
+	ethiot_1a
+
+snippet b_ethp "bpm110 ethiperc4a 1" 
+	ethiperc4a
+
+snippet b_eths "bpm110 ethisopros4a 1" 
+	ethisopros4a
+
+snippet b_eti "bpm110 etio5a 1" 
+	etio5a
+
+snippet b_exu "bpm110 exu9a 1" 
+	exu9a
+
+snippet b_fal "bpm110 falas 2" 
+	falas
+
+snippet b_fla "bpm110 flautaviola2b 1" 
+	flautaviola2b
+
+snippet b_gli "bpm110 glitch4a 1" 
+	glitch4a
+
+snippet b_guit "bpm110 guitaiao9a 1" 
+	guitaiao9a
+
+snippet b_guij "bpm110 guitajazz3a 1" 
+	guitajazz3a
+
+snippet b_hav "bpm110 havens10b 1" 
+	havens10b
+
+snippet b_hey "bpm110 hey11a 1" 
+	hey11a
+
+snippet b_hip "bpm110 hiphop2a 1" 
+	hiphop2a
+
+snippet b_ita "bpm110 itamar12a 1" 
+	itamar12a
+
+snippet b_jan "bpm110 janis7ab 1" 
+	janis7ab
+
+snippet b_jac "bpm110 jazzclima4a 1" 
+	jazzclima4a
+
+snippet b_jim "bpm110 jimi9a 1" 
+	jimi9a
+
+snippet b_led "bpm110 led2a 2" 
+	led2a
+
+snippet b_led2 "bpm110 led9a9a 2" 
+	led9a9a
+
+snippet b_len "bpm110 lenalennie8a 1" 
+	lenalennie8a
+
+snippet b_loo "bpm110 loony9a 1" 
+	loony9a
+
+snippet b_lug "bpm110 lugar9a 1" 
+	lugar9a
+
+snippet b_lun "bpm110 lunar8a 2" 
+	lunar8a
+
+snippet b_mac "bpm110 machine11a 1" 
+	machine11a
+
+snippet b_mal "bpm110 malvado4a 1" 
+	malvado4a
+
+snippet b_mar "bpm110 marimba8a 1" 
+	marimba8a
+
+snippet b_moa "bpm110 moaning6a 1" 
+	moaning6a
+
+snippet b_moj "bpm110 mojo9a 1" 
+	mojo9a
+
+snippet b_ner "bpm110 nereci8a 3" 
+	nereci8a
+
+snippet b_noc "bpm110 nochaser3a 1" 
+	nochaser3a
+
+snippet b_par "bpm110 paranga1a 2" 
+	paranga1a
+
+snippet b_rob "bpm110 robotjazz4a 1" 
+	robotjazz4a
+
+snippet b_sam "bpm110 sambasic1b 1" 
+	sambasic1b
+
+snippet b_sep "bpm110 sep138a 3" 
+	sep138a
+
+snippet b_sed "bpm110 sep13drum8a 1" 
+	sep13drum8a
+
+snippet b_sex "bpm110 sexysax5a 1" 
+	sexysax5a
+
+snippet b_lig "bpm110 siliga5a 1" 
+	siliga5a
+
+snippet b_sog "bpm110 softguitar5a 1" 
+	softguitar5a
+
+snippet b_sop "bpm110 softpiano12a 1" 
+	softpiano12a
+
+snippet b_sou "bpm110 soulburst12a 1" 
+	soulburst12a
+
+snippet b_so2 "bpm110 soulburst1a 1" 
+	soulburst1a
+
+snippet b_sou "bpm110 soulburst3b 1" 
+	soulburst3b
+
+snippet b_spi "bpm110 spid10b 1" 
+	spid10b
+
+snippet b_sto "bpm110 storm5a 1" 
+	storm5a
+
+snippet b_the "bpm110 thelonius7ab 1" 
+	thelonius7ab
+
+snippet b_thi "bpm110 this04a 1" 
+	this04a
+
+snippet b_toc "bpm110 toctoc9a 1" 
+	toctoc9a
+
+snippet b_tre "bpm110 tremdas11x3b 1" 
+	tremdas11x3b
+
+snippet b_tro "bpm110 trombos9a 1" 
+	trombos9a
+
+snippet b_uno "bpm110 unodos 1" 
+	unodos
+
+snippet b_vio "bpm110 violoutro1b 1" 
+	violoutro1b
+
+
+# Brazil percussion set B_
+
+snippet B_ago "brazilperc agogo 7" 
+	agogo
+
+snippet B_api "brazilperc apito 2" 
+	apito
+
+snippet B_ber "brazilperc berimbau 6" 
+	berimbau
+
+snippet B_cax "brazilperc caxixi 2" 
+	caxixi
+
+snippet B_cui "brazilperc cuica 6" 
+	cuica
+
+snippet B_pan "brazilperc pandeiro 9" 
+	pandeiro
+
+snippet B_reb "brazilperc rebolo 6" 
+	rebolo
+
+snippet B_rec "brazilperc recoreco 4" 
+	recoreco
+
+snippet B_surd "brazilperc surdo 9" 
+	surdo
+
+snippet B_tam "brazilperc tamborim 3" 
+	tamborim
+
+snippet B_tim "brazilperc timba 7" 
+	timba
+
+snippet B_til "brazilperc timbal 10" 
+	timbal
+
+snippet B_tri "brazilperc triangulo 6" 
+	triangulo
+
+
+# DIRT SAMPLES d_
+
+snippet d_8bd "DirtSamplesEdit 808bd 25" 
+	808bd
+
+snippet d_8cy "DirtSamplesEdit 808cy 25" 
+	808cy
+
+snippet d_8lt "DirtSamplesEdit 808lt 5" 
+	808lt
+
+snippet d_8mt "DirtSamplesEdit 808mt 5" 
+	808mt
+
+snippet d_8oh "DirtSamplesEdit 808oh 5" 
+	808oh
+
+snippet d_8sd "DirtSamplesEdit 808sd 25" 
+	808sd
+
+snippet d_909 "DirtSamplesEdit 909 1" 
+	909
+
+snippet d_ade "DirtSamplesEdit ade 10" 
+	ade
+
+snippet d_ale "DirtSamplesEdit alex 2" 
+	alex
+
+snippet d_ame "DirtSamplesEdit amencutup 32" 
+	amencutup
+
+snippet d_arp "DirtSamplesEdit arpy 11" 
+	arpy
+
+snippet d_aut "DirtSamplesEdit auto 11" 
+	auto
+
+snippet d_ba4 "DirtSamplesEdit bass 4" 
+	bass
+
+snippet d_ba3 "DirtSamplesEdit bass3 12" 
+	bass3
+
+snippet d_bad "DirtSamplesEdit bassdm 25" 
+	bassdm
+
+snippet d_bd "DirtSamplesEdit bd 24" 
+	bd
+
+snippet d_ben "DirtSamplesEdit bend 4" 
+	bend
+
+snippet d_bin "DirtSamplesEdit bin 2" 
+	bin
+
+snippet d_ble "DirtSamplesEdit bleep 13" 
+	bleep
+
+snippet d_bli "DirtSamplesEdit blip 2" 
+	blip
+
+snippet d_bot "DirtSamplesEdit bottle 13" 
+	bottle
+
+snippet d_cas "DirtSamplesEdit casio 3" 
+	casio
+
+snippet d_chi "DirtSamplesEdit chin 4" 
+	chin
+
+snippet d_chk "DirtSamplesEdit chink 1" 
+	chink
+
+snippet d_con "DirtSamplesEdit control 2" 
+	control
+
+snippet d_dr5 "DirtSamplesEdit dr55 4" 
+	dr55
+
+snippet d_drf "DirtSamplesEdit dr_few 8" 
+	dr_few
+
+snippet d_dru "DirtSamplesEdit drum 6" 
+	drum
+
+snippet d_drt "DirtSamplesEdit drumtraks 13" 
+	drumtraks
+
+snippet d_eas "DirtSamplesEdit east 9" 
+	east
+
+snippet d_fee "DirtSamplesEdit feel 7" 
+	feel
+
+snippet d_fex "DirtSamplesEdit feelfx 8" 
+	feelfx
+
+snippet d_fli "DirtSamplesEdit flick 17" 
+	flick
+
+snippet d_fut "DirtSamplesEdit future 17" 
+	future
+
+snippet d_gla "DirtSamplesEdit glasstap 3" 
+	glasstap
+
+snippet d_gli "DirtSamplesEdit glitch 8" 
+	glitch
+
+snippet d_gre "DirtSamplesEdit gretsch 24" 
+	gretsch
+
+snippet d_hh "DirtSamplesEdit hh27 13" 
+	hh
+
+snippet d_hoo "DirtSamplesEdit hoover 6" 
+	hoover
+
+snippet d_hou "DirtSamplesEdit house 8" 
+	house
+
+snippet d_ind "DirtSamplesEdit industrial 32" 
+	industrial
+
+snippet d_inv "DirtSamplesEdit invaders 18" 
+	invaders
+
+snippet d_jaz "DirtSamplesEdit jazz 8" 
+	jazz
+
+snippet d_jub "DirtSamplesEdit jungbass 20" 
+	jungbass
+
+snippet d_jun "DirtSamplesEdit jungle 13" 
+	jungle
+
+snippet d_jvb "DirtSamplesEdit jvbass 13" 
+	jvbass
+
+snippet d_kic "DirtSamplesEdit kicklinn 1" 
+	kicklinn
+
+snippet d_kur "DirtSamplesEdit kurt 7" 
+	kurt
+
+snippet d_lat "DirtSamplesEdit latibro 8" 
+	latibro
+
+snippet d_les "DirtSamplesEdit less 4" 
+	less
+
+snippet d_lin "DirtSamplesEdit linnhats 6" 
+	linnhats
+
+snippet d_min "DirtSamplesEdit miniyeah 4" 
+	miniyeah
+
+snippet d_mut "DirtSamplesEdit mute 28" 
+	mute
+
+snippet d_not "DirtSamplesEdit notes 15" 
+	notes
+
+snippet d_odx "DirtSamplesEdit odx 15" 
+	odx
+
+snippet d_per "DirtSamplesEdit peri 15" 
+	peri
+
+snippet d_plu "DirtSamplesEdit pluck 17" 
+	pluck
+
+snippet d_pop "DirtSamplesEdit popkick 10" 
+	popkick
+
+snippet d_pri "DirtSamplesEdit print 11" 
+	print
+
+snippet d_rea "DirtSamplesEdit realclaps 4" 
+	realclaps
+
+snippet d_res "DirtSamplesEdit rest 1" 
+	rest
+
+snippet d_squ "DirtSamplesEdit sequential 8" 
+	sequential
+
+snippet d_sit "DirtSamplesEdit sitar 8" 
+	sitar
+
+snippet d_stb "DirtSamplesEdit stab 23" 
+	stab
+
+snippet d_sto "DirtSamplesEdit stomp 10" 
+	stomp
+
+snippet d_sub "DirtSamplesEdit subroc3d 11" 
+	subroc3d
+
+snippet d_tab "DirtSamplesEdit tabla 26" 
+	tabla
+
+snippet d_tab "DirtSamplesEdit tabla2 48" 
+	tabla2
+
+snippet d_tru "DirtSamplesEdit trump 11" 
+	trump
+
+snippet d_wob "DirtSamplesEdit wobble 1" 
+	wobble
+
+snippet d_yea "DirtSamplesEdit yeah 31" 
+	yeah
+
+
+# DRUMSET D_
+
+snippet D_kif "drumset kif-d 16" 
+	kif-d
+
+snippet D_kip "drumset kip-g 16" 
+	kip-g
+
+snippet D_pec "drumset pec-Df 10" 
+	pec-df
+
+snippet D_peo "drumset peo-df 5" 
+	peo-df
+
+snippet D__ric "drumset ric-g 9" 
+	ric-g
+
+snippet D__rie "drumset rie 10" 
+	rie
+
+snippet D__rims "drumset rims 16" 
+	rims
+
+snippet D_rimu "drumset rimu 16" 
+	rimu
+
+snippet D_snc "drumset snc 16" 
+	snc
+
+snippet D_sne "drumset sne 15" 
+	sne
+
+snippet D_stk "drumset stk 16" 
+	stk
+
+snippet D_tof "drumset tof 16" 
+	tof
+
+snippet D_toh "drumset toh 16" 
+	toh
+
+# invocation i_
+
+snippet i_ain "invocation ainv9 9" 
+	ainv9
+
+snippet i_bin "invocation binv12 12" 
+	binv12
+
+snippet i_cin "invocation cinv24 24" 
+	cinv24
+
+snippet i_din "invocation dinv4 4" 
+	dinv4
+
+snippet i_ein "invocation einv8 8" 
+	einv8
+
+snippet i_fin "invocation finv12 12" 
+	finv12
+
+snippet i_gin "invocation ginv24 24" 
+	ginv24
+
+
+# SKMECS K_
+
+snippet K_11m "skmecs 11m2012 24" 
+	11m2012
+
+snippet K_bar "skmecs baru3m210t 10" 
+	baru3m210t
+
+snippet K_bas "skmecs basa9m48 32" 
+	basa9m48
+
+snippet K_bas2 "skmecs bass3m22 4" 
+	bass3m22
+
+snippet K_bas3 "skmecs bass6d 45" 
+	bass6d
+
+snippet K_bow "skmecs bowie8m22 4" 
+	bowie8m22
+
+snippet K_br3 "skmecs br3m 12" 
+	br3m
+
+snippet K_bum "skmecs bumbo 1" 
+	bumbo
+
+snippet K_buz "skmecs buzinas17 7" 
+	buzinas17
+
+snippet K_casa2 "skmecs casa5m23 6" 
+	casa5m23
+
+snippet K_casa3 "skmecs casav5m23 6" 
+	casav5m23
+
+snippet K_cav "skmecs cavaco1d42 8" 
+	cavaco1d42
+
+snippet K_cax "skmecs caxixi13 3" 
+	caxixi13
+
+snippet K_che "skmecs che10m6 6" 
+	che10m6
+
+snippet K_ch4 "skmecs cho10m44 16" 
+	cho10m44
+
+snippet K_cla "skmecs cla11m1 2" 
+	cla11m1
+
+snippet K_cla2 "skmecs cla11m21 2" 
+	cla11m21
+
+snippet K_cla3 "skmecs cla11m41 4" 
+	cla11m41
+
+snippet K_cla4 "skmecs cla11m81 8" 
+	cla11m81
+
+snippet K_cla5 "skmecs clas11m21 2" 
+	clas11m21
+
+snippet K_coc "skmecs cocker3m24 16" 
+	cocker3m24
+
+snippet K_cor "skmecs corone2m22 4" 
+	corone2m22
+
+snippet K_del "skmecs delas8m24 8" 
+	delas8m24
+
+snippet K_deo "skmecs deo2m 23" 
+	deo2m
+
+snippet K_deo2 "skmecs deob 36" 
+	deob
+
+snippet K_deo "skmecs deodra 8" 
+	deodra
+
+snippet K_deo "skmecs deodru 9" 
+	deodru
+
+snippet K_dim "skmecs dimelo3m42 8" 
+	dimelo3m42
+
+snippet K_dja "skmecs djav1m25 10" 
+	djav1m25
+
+snippet K_dja2 "skmecs djavk1 16" 
+	djavk1
+
+snippet K_ele "skmecs elev10m0510 5" 
+	elev10m0510
+
+snippet K_emb "skmecs embo44d 8" 
+	embo44d
+
+snippet K_emb2 "skmecs embol84 32" 
+	embol84
+
+snippet K_eth6 "skmecs ethi9m46 24" 
+	ethi9m46
+
+snippet K_eth1 "skmecs ethio1d1 1" 
+	ethio1d1
+
+snippet K_eth2 "skmecs ethio8m12 2" 
+	ethio8m12
+
+snippet K_eth3 "skmecs ethis9m83 24" 
+	ethis9m83
+
+snippet K_fal "skmecs falas 2" 
+	falas
+
+snippet K_g12 "g12m42 8 130pbm" 
+	g12m42
+
+snippet K_go1 "skmecs go10m41 4" 
+	go10m41
+
+snippet K_umv "skmecs umvope 8" 
+	umvope
+
+snippet K_uno4 "skmecs unodos22 4" 
+	unodos22
+
+snippet K_ver "skmecs verk 6" 
+	verk
+
+snippet K_vio3 "skmecs viola9m13 3" 
+	viola9m13
+
+snippet K_vio2 "skmecs violong 1" 
+	violong
+
+snippet K_wah "skmecs wahiao3_15 3" 
+	wahiao3_15
+
+snippet K_zuh "skmecs zuhause 16" 
+	zuhause
+
+snippet K_aigo "airstrip agogo" 
+	agogo2
+
+snippet K_aibai "airstrip baixo" 
+	baixo
+
+snippet K_aibrea "airstrip breaks" 
+	breaks
+
+snippet K_aicym "airstrip cymbal" 
+	cymbal
+
+snippet K_aiguit "airstrip guita" 
+	guita
+
+snippet K_aihh "airstrip hihat" 
+	hihat
+
+snippet K_kick "airstrip kick" 
+	kick
+
+snippet K_airho "airstrip rhodes" 
+	rhodes
+
+snippet K_airide "airstrip ride" 
+	ride
+
+snippet K_airim "airstrip rim" 
+	rim
+
+snippet K_aisn "airstrip snare" 
+	snare
+
+snippet K_aisax "airstrip sax" 
+	sopro
+
+snippet K_aitin "airstrip tin" 
+	tin
+
+snippet K_aitom "airstrip tomtom" 
+	tom
+
+
+# MIDI
+
+snippet mil "loop 2 notes - 1" 
+	n (cP "[]" "$1") $0
+
+snippet minotes "midi notes" 
+	n (cP "[]" "notes") # s $1 $0
+
+

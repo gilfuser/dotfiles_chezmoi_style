@@ -4,15 +4,20 @@ return function(use)
   --   config = function() require("which-key").setup {} end
   -- }
   -- style stuff
-  use("ellisonleao/gruvbox.nvim")
-  use("folke/tokyonight.nvim")
-  use("Shatur/neovim-ayu")
+  use "ellisonleao/gruvbox.nvim"
+  use "folke/tokyonight.nvim"
+  use "Shatur/neovim-ayu"
+  use 'eddyekofo94/gruvbox-flat.nvim'
+  use {
+    "mcchrish/zenbones.nvim",
+    requires = "rktjmp/lush.nvim"
+}
   -- use("p00f/nvim-ts-rainbow")
   -- ----------------
-  use({ "jose-elias-alvarez/null-ls.nvim" })
+  use "jose-elias-alvarez/null-ls.nvim"
 
   -- use("vijaymarupudi/nvim-fzf")
-  use("davidgranstrom/scnvim")
+  use "davidgranstrom/scnvim"
   -- use("ibhagwan/fzf-lua")
   -- use("gilfuser/fzf-sc")
   -- use("davidgranstrom/scnvim-tmux")
@@ -54,14 +59,6 @@ return function(use)
   use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
   use("xiyaowong/nvim-transparent")
   use { "nvim-telescope/telescope-file-browser.nvim" }
-  use {
-  "nvim-telescope/telescope.nvim",
-  requires = {
-    { "nvim-telescope/telescope-live-grep-args.nvim" },
-  },
-  config = function()
-    require("telescope").load_extension("live_grep_args")
-  end
-}
+  use ('doxnit/cmp-luasnip-choice')
 end
 

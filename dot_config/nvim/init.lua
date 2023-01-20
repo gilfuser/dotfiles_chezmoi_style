@@ -8,6 +8,35 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 require('packer').startup(function(use)
+use {
+  "smjonas/snippet-converter.nvim",
+  -- SnippetConverter uses semantic versioning. Example: use version = "1.*" to avoid breaking changes on version 1.
+  -- Uncomment the next line to follow stable releases only.
+  tag = "*",
+  config = function()
+    local template = {
+      -- name = "t1", (optionally give your template a name to refer to it in the `ConvertSnippets` command)
+      sources = {
+        vscode_luasnip = {
+          -- Add snippets from (plugin) folders or individual files on your runtimepath...
+          "~/.cache/nvim/scnvim/scnvim_snippets.lua",
+        },
+      },
+      output = {
+        -- Specify the output formats and paths
+        snipmate = {
+          "~/Desktop/supercollider.snippets",
+        },
+      },
+    }
+
+    require("snippet_converter").setup {
+      templates = { template },
+      -- To change the default settings (see configuration section in the documentation)
+      -- settings = {},
+    }
+  end
+}
   -- Package manager
   use 'wbthomason/packer.nvim'
 
@@ -28,9 +57,20 @@ require('packer').startup(function(use)
 
   use { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lua', 'hrsh7th/cmp-cmdline', 'onsails/lspkind.nvim' }
+    requires = { 
+      'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', 
+      'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lua', 
+      'hrsh7th/cmp-cmdline', 'onsails/lspkind.nvim' 
+    }
   }
-
+use {
+  'doxnit/cmp-luasnip-choice',
+  config = function()
+    require('cmp_luasnip_choice').setup({
+        auto_open = true, -- Automatically open nvim-cmp on choice node (default: true)
+    });
+  end,
+}
   use { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     run = function()
@@ -60,11 +100,14 @@ require('packer').startup(function(use)
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
   -- Fuzzy Finder (files, lsp, etc)
-  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim',  "nvim-telescope/telescope-live-grep-args.nvim",
-    config = function()
-      require("telescope").load_extension("live_grep_args")
-    end
-  } }
+  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x',
+    requires = {
+      'nvim-lua/plenary.nvim',  "nvim-telescope/telescope-live-grep-args.nvim",
+      config = function()
+        require("telescope").load_extension("live_grep_args")
+      end
+    }
+  }
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
@@ -165,16 +208,35 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+
+local function scstatus()
+    if vim.bo.filetype == "supercollider" then
+        local stat = vim.fn["scnvim#statusline#server_status"]()
+            stat = stat:gsub("%%", "♪")
+        return stat
+    else
+        return ""
+    end
+end
+
 -- Set lualine as statusline
 -- See `:help lualine.txt`
-require('lualine').setup {
+require("lualine").setup({
   options = {
     icons_enabled = false,
     theme = 'tokyonight',
     component_separators = '|',
     section_separators = '',
   },
-}
+	sections = {
+		lualine_a = { "mode" },
+		lualine_b = { "branch", "diff", "diagnostics" },
+		lualine_c = { "filename", scstatus },
+		lualine_x = { "filetype" },
+		lualine_y = { "progress" },
+		lualine_z = { "location" },
+	},
+})
 
 -- Enable Comment.nvim
 require('Comment').setup()
@@ -235,7 +297,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'supercollider' },
+  ensure_installed = { 'c', 'cpp', 'lua', 'python', 'typescript', 'help', 'supercollider' },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python', 'supercollider' } },
@@ -295,8 +357,8 @@ require('nvim-treesitter.configs').setup {
 }
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '8d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', '9d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
@@ -395,12 +457,15 @@ mason_lspconfig.setup_handlers {
 -- Turn on lsp status information
 require('fidget').setup()
 
+-- print("lalalali")
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
 -- nvim-cmp setup
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 -- local lspkind = require('lspkind')
 
-cmp.setup {
+ cmp.setup {
   -- entries = {name = 'custom', selection_order = 'near_cursor' },
   snippet = {
     expand = function(args)
@@ -424,10 +489,21 @@ cmp.setup {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-y>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      -- This little snippet will confirm with C-y, and if no entry is selected,
+      -- will confirm the first item
+      if cmp.visible() then
+        local entry = cmp.get_selected_entry()
+        if not entry then
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        else
+          cmp.confirm()
+        end
+      else
+        fallback()
+      end
+    end, {"i","s","c",}),
+
     ['<C-j>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -446,12 +522,12 @@ cmp.setup {
         fallback()
       end
     end, { 'i', 's' }),
-    ["<tab>"] = cmp.config.disable,
+    -- ["<tab>"] = cmp.config.disable,
   },
   sources = {
-    { name = 'luasnip_choice', keyword_length = 3 },
+    { name = 'luasnip-choice' },
     { name = 'luasnip', keyword_length = 3},
-    { name = 'buffer', keyword_length = 5 },
+    { name = 'buffer', keyword_length = 4 },
     { name = 'nvim_lsp',keyword_length = 3,
     entry_filter = function(entry, ctx)
       return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
@@ -489,23 +565,25 @@ cmp.event:on(
   cmp_autopairs.on_confirm_done()
 )
 -- Use buffer source for `/`.
+    -- `/` cmdline setup.
 cmp.setup.cmdline('/', {
-    completion = { autocomplete = false },
-    sources = {
-        -- { name = 'buffer' }
-        { name = 'buffer', opts = { keyword_pattern = [=[[^[:blank:]].*]=] } }
-    }
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
 })
-
 -- Use cmdline & path source for ':'.
+    -- `:` cmdline setup.
 cmp.setup.cmdline(':', {
-    completion = { autocomplete = false },
-    sources = cmp.config.sources({
-        { name = 'path' }
-        }, {
-        { name = 'cmdline' }
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+      {
+        name = 'cmdline',
+        option = {
+          ignore_cmds = { 'Man', '!' }
+        }
+      }
     })
 })
--- print("lalalali")
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
